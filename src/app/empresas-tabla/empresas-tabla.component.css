@@ -1,0 +1,22 @@
+.full-width-table {
+  width: 100%;
+  
+}
+
+mat-card {
+  width: 90%;
+  min-width: 120px;
+  margin: 20px auto;  
+}
+
+mat-card-header {  
+  margin: auto;
+  text-align: center;
+}
+
+
+mat-card-footer {
+  background-color: #7b1fa2;
+  text-align: right;
+}
+
