@@ -6,3 +6,12 @@
 mat-tree {
   background-color: #7b1fa2;
 }
+
+a{
+  text-decoration: none;
+  color: white
+}
+
+a:hover{
+  opacity: 0.8;
+}

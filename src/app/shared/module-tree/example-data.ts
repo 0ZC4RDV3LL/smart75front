@@ -2,17 +2,18 @@
 export const files = [
   {
     name: 'Empresas',
-    type: 'business',
+    type: 'business',    
     children: [
       {
         name: 'Lista',
-        type: 'table_view',
+        type: '/empresas',
+        
       },
       {
         name: 'Formulario',
-        type: 'feed'
+        type: '/empresas/formulario',
+       
       }
-
     ]
   },
   {
@@ -21,11 +22,13 @@ export const files = [
     children: [
       {
         name: 'Lista',
-        type: 'table_view',
+        type: '/equipos',
+        
       },
       {
         name: 'Formulario',
-        type: 'feed'
+        type: '/equipos/formulario',
+       
       }
     ]
   },
@@ -35,11 +38,13 @@ export const files = [
     children: [
       {
         name: 'Lista',
-        type: 'table_view',
+        type: '/mantenimientos',
+        
       },
       {
         name: 'Formulario',
-        type: 'feed'
+        type: '/mantenimientos/formulario',
+        
       }
     ]
   },
@@ -49,11 +54,13 @@ export const files = [
     children: [
       {
         name: 'Lista',
-        type: 'table_view',
+        type: '/empleados',
+        
       },
       {
         name: 'Formulario',
-        type: 'feed'
+        type: '/empleados/formulario',
+        
       }
     ]
   }

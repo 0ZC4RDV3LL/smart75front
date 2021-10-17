@@ -1,0 +1,66 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h1>Equipos</h1>
+    </mat-card-title>
+  </mat-card-header>
+  <div class="card-content">
+    <div class="mat-elevation-z8">
+      <table mat-table class="full-width-table" matSort aria-label="Elements">
+        <!-- Id Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+          <td mat-cell *matCellDef="let row">{{row.id}}</td>
+        </ng-container>
+    
+        <!-- Tipo Column -->
+        <ng-container matColumnDef="tipo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo</th>
+          <td mat-cell *matCellDef="let row">{{row.tipo}}</td>
+        </ng-container>
+
+        <!-- Marca Column -->
+        <ng-container matColumnDef="marca">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Marca</th>
+          <td mat-cell *matCellDef="let row">{{row.marca}}</td>
+        </ng-container>
+
+        <!-- Serial Column -->
+        <ng-container matColumnDef="serial">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Serial</th>
+          <td mat-cell *matCellDef="let row">{{row.serial}}</td>
+        </ng-container>
+
+        <!-- Modelo Column -->
+        <ng-container matColumnDef="modelo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Modelo</th>
+          <td mat-cell *matCellDef="let row">{{row.modelo}}</td>
+        </ng-container>
+
+        <!-- Cliente Column -->
+        <ng-container matColumnDef="cliente">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Cliente</th>
+          <td mat-cell *matCellDef="let row">{{row.cliente}}</td>
+        </ng-container>
+
+        <!-- Observaciones Column -->
+        <ng-container matColumnDef="observaciones">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Observaciones</th>
+          <td mat-cell *matCellDef="let row">{{row.observaciones}}</td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    
+      <mat-paginator #paginator
+          [length]="dataSource?.data?.length"
+          [pageIndex]="0"
+          [pageSize]="5"
+          [pageSizeOptions]="[5, 10, 20]"
+          aria-label="Select page">
+      </mat-paginator>
+    </div>
+  </div>
+</mat-card>
+

@@ -1,0 +1,85 @@
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Información del mantenimiento</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Costo" formControlName="costo" type="number">
+            <mat-error *ngIf="addressForm.controls['costo'].hasError('required')">
+              El costo es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Fecha de Ingreso</mat-label>
+            <input matInput [matDatepicker]="picker1" formControlName="ingreso"/>
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+            <mat-error *ngIf="addressForm.controls['ingreso'].hasError('required')">
+              La fecha de ingreso es <strong>requerida</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>     
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Fecha de Salida</mat-label>
+            <input matInput [matDatepicker]="picker2" formControlName="ingreso"/>
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+            <mat-error *ngIf="addressForm.controls['salida'].hasError('required')">
+              La fecha de salida es <strong>requerida</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      
+      <div class="row">        
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Equipo" formControlName="equipo">
+              <mat-option *ngFor="let equipo of equipos" [value]="equipo.abbreviation">
+                {{ equipo.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="addressForm.controls['equipo'].hasError('required')">
+              El equipo es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">        
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Técnico" formControlName="tecnico">
+              <mat-option *ngFor="let tecnico of tecnicos" [value]="tecnico.abbreviation">
+                {{ tecnico.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="addressForm.controls['tecnico'].hasError('required')">
+              El técnico es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Observaciones" formControlName="observaciones"></textarea>
+            <mat-error *ngIf="addressForm.controls['observaciones'].hasError('required')">
+              Las observaciones son <strong>requeridas</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

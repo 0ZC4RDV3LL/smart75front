@@ -2,28 +2,23 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-empresas-formulario',
-  templateUrl: './empresas-formulario.component.html',
-  styleUrls: ['./empresas-formulario.component.css']
+  selector: 'app-mantenimientos-formulario',
+  templateUrl: './mantenimientos-formulario.component.html',
+  styleUrls: ['./mantenimientos-formulario.component.css']
 })
-export class EmpresasFormularioComponent {
+export class MantenimientosFormularioComponent {
   addressForm = this.fb.group({
-    company: null,
-    firstName: [null, Validators.required],
-    lastName: [null, Validators.required],
-    address: [null, Validators.required],
-    address2: null,
-    city: [null, Validators.required],
-    state: [null, Validators.required],
-    postalCode: [null, Validators.compose([
-      Validators.required, Validators.minLength(5), Validators.maxLength(5)])
-    ],
-    shipping: ['free', Validators.required]
+    costo: [null, Validators.required],
+    ingreso: [null, Validators.required],
+    salida: [null, Validators.required],
+    Estado: [null, Validators.required],
+    equipo: [null, Validators.required],
+    tecnico: [null, Validators.required],    
+    observaciones: [null, Validators.required],    
   });
 
-  hasUnitNumber = false;
 
-  states = [
+  equipos = [
     {name: 'Alabama', abbreviation: 'AL'},
     {name: 'Alaska', abbreviation: 'AK'},
     {name: 'American Samoa', abbreviation: 'AS'},
@@ -65,7 +60,10 @@ export class EmpresasFormularioComponent {
     {name: 'North Dakota', abbreviation: 'ND'},
     {name: 'Northern Mariana Islands', abbreviation: 'MP'},
     {name: 'Ohio', abbreviation: 'OH'},
-    {name: 'Oklahoma', abbreviation: 'OK'},
+    {name: 'Oklahoma', abbreviation: 'OK'}    
+  ];
+
+  tecnicos = [
     {name: 'Oregon', abbreviation: 'OR'},
     {name: 'Palau', abbreviation: 'PW'},
     {name: 'Pennsylvania', abbreviation: 'PA'},
@@ -88,6 +86,11 @@ export class EmpresasFormularioComponent {
   constructor(private fb: FormBuilder) {}
 
   onSubmit(): void {
-    alert('Thanks!');
+    if (this.addressForm.valid) {
+      alert('El mantenimiento se ha registrado correctamente');
+      
+    } else {
+      alert('Por favor, complete los campos requeridos')
+    }
   }
 }
