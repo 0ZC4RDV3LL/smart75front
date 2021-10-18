@@ -1,4 +1,4 @@
-<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+<form [formGroup]="addressForm" novalidate (change)="onChange()" (ngSubmit)="onSubmit()">
   <mat-card class="shipping-card">
     <mat-card-header>
       <mat-card-title>Formulario Empleados</mat-card-title>
@@ -19,13 +19,13 @@
           <mat-form-field class="full-width">
             <input matInput placeholder="Correo" formControlName="correo">
             <mat-error *ngIf="addressForm.controls['correo'].hasError('required')">
-              El correo <strong>requerido</strong>
+              El correo es <strong>requerido</strong>
             </mat-error>
           </mat-form-field>
         </div>
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Teléfono" formControlName="telefono">
+            <input matInput placeholder="Teléfono" formControlName="telefono" type="number">
             <mat-error *ngIf="addressForm.controls['telefono'].hasError('required')">
               El teléfono es <strong>requerido</strong>
             </mat-error>
@@ -43,7 +43,7 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit">Submit</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="botonDeshabilitado">Enviar</button>
     </mat-card-actions>
   </mat-card>
 </form>

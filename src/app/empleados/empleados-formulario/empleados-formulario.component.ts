@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-empleados-formulario',
@@ -15,12 +16,22 @@ export class EmpleadosFormularioComponent {
     ],
     rol: ['tecnico', Validators.required]
   });
+  
+  botonDeshabilitado = true;
+  
+  constructor(private fb: FormBuilder, private router: Router) {
+    const navigation = this.router.getCurrentNavigation();
+  }
 
-  hasUnitNumber = false;
-
-  constructor(private fb: FormBuilder) {}
+  onChange():void {
+    if(this.addressForm.valid) {
+      this.botonDeshabilitado = false;
+    }
+  }
 
   onSubmit(): void {
-    alert('Thanks!');
+    if (this.addressForm.valid) {
+      this.router.navigate(['home/empleados']);
+    }
   }
 }

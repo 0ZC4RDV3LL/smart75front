@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mantenimientos-formulario',
@@ -83,14 +84,22 @@ export class MantenimientosFormularioComponent {
     {name: 'Wyoming', abbreviation: 'WY'}
   ];
 
-  constructor(private fb: FormBuilder) {}
+  botonDeshabilitado = true;
+
+  constructor(private fb: FormBuilder, private router: Router) {
+    const navigation = this.router.getCurrentNavigation();
+  }
+  
+  onChange(): void {
+    if (this.addressForm.valid) {
+      this.botonDeshabilitado = false;
+    }
+  }
 
   onSubmit(): void {
     if (this.addressForm.valid) {
-      alert('El mantenimiento se ha registrado correctamente');
+      this.router.navigate(['home/mantenimientos']);
       
-    } else {
-      alert('Por favor, complete los campos requeridos')
     }
   }
 }

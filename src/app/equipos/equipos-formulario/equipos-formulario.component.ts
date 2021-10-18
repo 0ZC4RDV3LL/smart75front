@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-equipos-formulario',
@@ -15,17 +16,21 @@ export class EquiposFormularioComponent {
     observaciones: [null, Validators.required]    
   });
 
-  hasUnitNumber = false;
+  botonDeshabilitado = true;
   
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private router: Router) {
+    const navigation = this.router.getCurrentNavigation();
+  }
+
+  onChange(): void {
+    if (this.addressForm.valid) {
+      this.botonDeshabilitado = false;
+    }
+  }
 
   onSubmit(): void {
-
     if (this.addressForm.valid) {
-      alert('El equipo fue agregado correctamente');
-      
-    } else {
-      alert('Por favor, llenar todos los campos');
-    }
+      this.router.navigate(['home/equipos']);
+    } 
   }
 }

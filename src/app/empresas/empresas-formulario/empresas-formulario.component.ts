@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-empresas-formulario',
@@ -19,7 +20,7 @@ export class EmpresasFormularioComponent {
     ]
   });
 
-  hasUnitNumber = false;
+  botonDehabilitado = true;
 
   states = [
     {name: 'Alabama', abbreviation: 'AL'},
@@ -83,14 +84,20 @@ export class EmpresasFormularioComponent {
     {name: 'Wyoming', abbreviation: 'WY'}
   ];
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private router: Router) {
+    const navigation = this.router.getCurrentNavigation();
+  }
+
+  onChange(): void {
+    if (this.addressForm.valid) {
+      this.botonDehabilitado = false;
+    }
+  }
 
   onSubmit(): void {
-
     if (this.addressForm.valid) {
-      alert('Empresa registrada!');      
-    } else {
-      alert('Termine de completar los campos requeridos')
+      alert('Empresa registrada!');
+      this.router.navigate(['home/empresas']);
     }
   }
 }

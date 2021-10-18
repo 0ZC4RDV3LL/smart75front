@@ -1,9 +1,16 @@
+.fondo {
+  background-color: royalblue;
+  margin-top: 10%;
+  margin-bottom: 0;
+  position: absolute;
+}
+
 .full-width {
   width: 100%;
 }
 
 .shipping-card {
-  width: 40%;
+  
   min-width: 120px;
   margin:auto;
 }
@@ -24,9 +31,9 @@
 }
 
 mat-card-header {
-  margin: auto 45%;
+  margin: auto 40%;
 }
 
 button{
-  margin: auto 45%;
+  margin: auto 40%;
 }

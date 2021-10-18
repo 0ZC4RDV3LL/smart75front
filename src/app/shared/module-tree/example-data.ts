@@ -6,12 +6,12 @@ export const files = [
     children: [
       {
         name: 'Lista',
-        type: '/empresas',
+        type: './empresas',
         
       },
       {
         name: 'Formulario',
-        type: '/empresas/formulario',
+        type: './empresas/formulario',
        
       }
     ]
@@ -22,12 +22,12 @@ export const files = [
     children: [
       {
         name: 'Lista',
-        type: '/equipos',
+        type: './equipos',
         
       },
       {
         name: 'Formulario',
-        type: '/equipos/formulario',
+        type: './equipos/formulario',
        
       }
     ]
@@ -38,12 +38,12 @@ export const files = [
     children: [
       {
         name: 'Lista',
-        type: '/mantenimientos',
+        type: './mantenimientos',
         
       },
       {
         name: 'Formulario',
-        type: '/mantenimientos/formulario',
+        type: './mantenimientos/formulario',
         
       }
     ]
@@ -54,12 +54,12 @@ export const files = [
     children: [
       {
         name: 'Lista',
-        type: '/empleados',
+        type: './empleados',
         
       },
       {
         name: 'Formulario',
-        type: '/empleados/formulario',
+        type: './empleados/formulario',
         
       }
     ]
