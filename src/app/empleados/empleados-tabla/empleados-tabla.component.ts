@@ -2,7 +2,8 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { EmpleadosTablaDataSource, EmpleadosTablaItem } from './empleados-tabla-datasource';
+import { EmpleadosTablaDataSource } from './empleados-tabla-datasource';
+import { Empleados } from '../../interfaces/empleados';
 
 @Component({
   selector: 'app-empleados-tabla',
@@ -12,7 +13,7 @@ import { EmpleadosTablaDataSource, EmpleadosTablaItem } from './empleados-tabla-
 export class EmpleadosTablaComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<EmpleadosTablaItem>;
+  @ViewChild(MatTable) table!: MatTable<Empleados>;
   dataSource: EmpleadosTablaDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */

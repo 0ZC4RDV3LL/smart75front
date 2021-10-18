@@ -3,18 +3,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
+import { Empleados } from '../../interfaces/empleados';
 
-// TODO: Replace this with your own data model type
-export interface EmpleadosTablaItem {
-  id: number;
-  nombre: string;
-  correo: string;
-  telefono: string;
-  rol: string;
-}
 
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: EmpleadosTablaItem[] = [
+const EXAMPLE_DATA: Empleados[] = [
   {id: 1, nombre: 'Hydrogen', correo: '', telefono: '', rol: ''},
   {id: 2, nombre: 'Helium', correo: '', telefono: '', rol: ''},
   {id: 3, nombre: 'Lithium', correo: '', telefono: '', rol: ''},
@@ -42,21 +35,22 @@ const EXAMPLE_DATA: EmpleadosTablaItem[] = [
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class EmpleadosTablaDataSource extends DataSource<EmpleadosTablaItem> {
-  data: EmpleadosTablaItem[] = EXAMPLE_DATA;
+export class EmpleadosTablaDataSource extends DataSource<Empleados> {
+  data: Empleados[] = EXAMPLE_DATA;
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
+   
 
   constructor() {
     super();
-  }
+  }  
 
   /**
    * Connect this data source to the table. The table will only update when
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<EmpleadosTablaItem[]> {
+  connect(): Observable<Empleados[]> {
     if (this.paginator && this.sort) {
       // Combine everything that affects the rendered data into one update
       // stream for the data-table to consume.
@@ -79,7 +73,7 @@ export class EmpleadosTablaDataSource extends DataSource<EmpleadosTablaItem> {
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: EmpleadosTablaItem[]): EmpleadosTablaItem[] {
+  private getPagedData(data: Empleados[]): Empleados[] {
     if (this.paginator) {
       const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
       return data.splice(startIndex, this.paginator.pageSize);
@@ -92,7 +86,7 @@ export class EmpleadosTablaDataSource extends DataSource<EmpleadosTablaItem> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: EmpleadosTablaItem[]): EmpleadosTablaItem[] {
+  private getSortedData(data: Empleados[]): Empleados[] {
     if (!this.sort || !this.sort.active || this.sort.direction === '') {
       return data;
     }

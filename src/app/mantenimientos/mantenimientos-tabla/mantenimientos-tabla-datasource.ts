@@ -3,21 +3,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-
-// TODO: Replace this with your own data model type
-export interface MantenimientosTablaItem {
-  id: number;
-  costo: number;
-  ingreso: string;
-  salida: string;
-  estado: boolean;
-  equipo: string;
-  tecnico: string;
-  observaciones: string;
-}
+import { Mantenimientos } from 'src/app/interfaces/mantenimientos';
 
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: MantenimientosTablaItem[] = [
+const EXAMPLE_DATA: Mantenimientos[] = [
   {id: 1, costo: 0, ingreso: '', salida: '', estado: false, equipo: '', tecnico: '', observaciones:''},
   {id: 2, costo: 0, ingreso: '', salida: '', estado: false, equipo: '', tecnico: '', observaciones:''},
   {id: 3, costo: 0, ingreso: '', salida: '', estado: false, equipo: '', tecnico: '', observaciones:''},
@@ -45,8 +34,8 @@ const EXAMPLE_DATA: MantenimientosTablaItem[] = [
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
-export class MantenimientosTablaDataSource extends DataSource<MantenimientosTablaItem> {
-  data: MantenimientosTablaItem[] = EXAMPLE_DATA;
+export class MantenimientosTablaDataSource extends DataSource<Mantenimientos> {
+  data: Mantenimientos[] = EXAMPLE_DATA;
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
 
@@ -59,7 +48,7 @@ export class MantenimientosTablaDataSource extends DataSource<MantenimientosTabl
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<MantenimientosTablaItem[]> {
+  connect(): Observable<Mantenimientos[]> {
     if (this.paginator && this.sort) {
       // Combine everything that affects the rendered data into one update
       // stream for the data-table to consume.
@@ -82,7 +71,7 @@ export class MantenimientosTablaDataSource extends DataSource<MantenimientosTabl
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: MantenimientosTablaItem[]): MantenimientosTablaItem[] {
+  private getPagedData(data: Mantenimientos[]): Mantenimientos[] {
     if (this.paginator) {
       const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
       return data.splice(startIndex, this.paginator.pageSize);
@@ -95,7 +84,7 @@ export class MantenimientosTablaDataSource extends DataSource<MantenimientosTabl
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: MantenimientosTablaItem[]): MantenimientosTablaItem[] {
+  private getSortedData(data: Mantenimientos[]): Mantenimientos[] {
     if (!this.sort || !this.sort.active || this.sort.direction === '') {
       return data;
     }

@@ -2,7 +2,8 @@ import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { EquiposTablaDataSource, EquiposTablaItem } from './equipos-tabla-datasource';
+import { Equipos } from 'src/app/interfaces/equipos';
+import { EquiposTablaDataSource } from './equipos-tabla-datasource';
 
 @Component({
   selector: 'app-equipos-tabla',
@@ -12,7 +13,7 @@ import { EquiposTablaDataSource, EquiposTablaItem } from './equipos-tabla-dataso
 export class EquiposTablaComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<EquiposTablaItem>;
+  @ViewChild(MatTable) table!: MatTable<Equipos>;
   dataSource: EquiposTablaDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
