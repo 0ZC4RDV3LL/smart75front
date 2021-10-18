@@ -1,14 +1,19 @@
-const path = requiere('path');
-const express = requiere('express');
+//Install express server
+const express = require('express');
+const serveStatic = require('serve-static');
+const path = require('path');
+
 const app = express();
 
-// Serve stativ files
-app.use(express.static(__dirname + '/dist/smart75front'));
+// Serve only the static files form the dist directory
+app.use('/', serveStatic(path.join(__dirname, '/dist')));
 
-// Send all request to index.html
-app.get('/', (req, res) =>
-    res.sendFile('index.html',{root: 'dist/smart75front'}),
+app.get(/.*/, (req, res) =>
+    res.sendFile(path.join(__dirname, '/dist/index.html')),
 );
 
-// default Heroku port
-app.listen(proccess.env.PORT || 8080);
+const port = process.env.PORT || 8080;
+
+// Start the app by listening on the default Heroku port
+app.listen(port);
+console.log(`app is listening on port ${port}`);
