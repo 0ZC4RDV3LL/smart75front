@@ -17,8 +17,10 @@
   z-index: 1;
 }
 
-.spacer {
-  
+.spacer {  
   flex: 1 1 auto;
+}
 
+mat-toolbar > mat-icon {
+  margin: auto 20px;
 }

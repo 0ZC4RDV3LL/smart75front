@@ -11,10 +11,13 @@ import { EquiposFormularioComponent } from './equipos/equipos-formulario/equipos
 import { EquiposTablaComponent } from './equipos/equipos-tabla/equipos-tabla.component';
 import { MantenimientosFormularioComponent } from './mantenimientos/mantenimientos-formulario/mantenimientos-formulario.component';
 import { MantenimientosTablaComponent } from './mantenimientos/mantenimientos-tabla/mantenimientos-tabla.component';
-import { MaterialModule } from './material.module';
 
 import { ModuleTreeComponent } from './shared/module-tree/module-tree.component';
 import { NavegacionComponent } from './shared/navegacion/navegacion.component';
+import { LoginComponent } from './login/login.component';
+import { BannerComponent } from './banner/banner.component';
+
+import { MaterialModule } from './material.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,8 @@ import { NavegacionComponent } from './shared/navegacion/navegacion.component';
     EquiposFormularioComponent,
     MantenimientosTablaComponent,
     MantenimientosFormularioComponent,
+    LoginComponent,
+    BannerComponent,
   ],
   imports: [
     BrowserModule,

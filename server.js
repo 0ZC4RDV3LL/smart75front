@@ -6,9 +6,9 @@ const app = express();
 app.use(express.static(__dirname + '/dist/smart75front'));
 
 // Send all request to index.html
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/dist/smart75front/index.html'));
-});
+app.get('/', (req, res) =>
+    res.sendFile('index.html',{root: 'dist/smart75front'}),
+);
 
 // default Heroku port
-app.listen(proccess.env.PORT || 5000);
+app.listen(proccess.env.PORT || 8080);

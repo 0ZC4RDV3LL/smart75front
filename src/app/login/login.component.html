@@ -1,0 +1,53 @@
+
+<div class="row">
+  <div class="col">
+    <app-banner></app-banner>
+  </div>
+  <div class="col">
+    <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+      <mat-card class="shipping-card">
+        <mat-card-header>
+          <mat-card-title>Login</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Company" formControlName="company">
+              </mat-form-field>
+            </div>
+          </div>     
+          <div class="row">        
+            <div class="col">
+              <mat-form-field class="full-width">
+                <mat-select placeholder="State" formControlName="state">
+                  <mat-option *ngFor="let state of states" [value]="state.abbreviation">
+                    {{ state.name }}
+                  </mat-option>
+                </mat-select>
+                <mat-error *ngIf="addressForm.controls['state'].hasError('required')">
+                  State is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+    
+          <div class="row">
+            <div class="col">
+              <mat-form-field class="full-width">
+                <input matInput placeholder="Company" formControlName="company">
+              </mat-form-field>
+            </div>
+          </div>         
+        </mat-card-content>
+        <button mat-raised-button color="primary" type="submit">Submit</button>   
+      </mat-card>
+    </form>
+    
+  </div>
+  <div class="col">
+    <app-banner></app-banner>
+  </div>
+</div>
+
+
