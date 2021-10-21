@@ -8,7 +8,7 @@ import { Empleados } from '../interfaces/empleados';
 })
 export class EmpleadosService {
 
-  apiURL = '';
+  apiURL = 'https://smart75-mintic.herokuapp.com/api';
 
   constructor(private http: HttpClient) { }
 

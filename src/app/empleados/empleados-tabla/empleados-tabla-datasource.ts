@@ -5,29 +5,28 @@ import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
 import { Empleados } from '../../interfaces/empleados';
 
-
 // TODO: replace this with real data from your application
 const EXAMPLE_DATA: Empleados[] = [
-  {id: 1, nombre: 'Hydrogen', correo: '', telefono: '', rol: ''},
-  {id: 2, nombre: 'Helium', correo: '', telefono: '', rol: ''},
-  {id: 3, nombre: 'Lithium', correo: '', telefono: '', rol: ''},
-  {id: 4, nombre: 'Beryllium', correo: '', telefono: '', rol: ''},
-  {id: 5, nombre: 'Boron', correo: '', telefono: '', rol: ''},
-  {id: 6, nombre: 'Carbon', correo: '', telefono: '', rol: ''},
-  {id: 7, nombre: 'Nitrogen', correo: '', telefono: '', rol: ''},
-  {id: 8, nombre: 'Oxygen', correo: '', telefono: '', rol: ''},
-  {id: 9, nombre: 'Fluorine', correo: '', telefono: '', rol: ''},
-  {id: 10, nombre: 'Neon', correo: '', telefono: '', rol: ''},
-  {id: 11, nombre: 'Sodium', correo: '', telefono: '', rol: ''},
-  {id: 12, nombre: 'Magnesium', correo: '', telefono: '', rol: ''},
-  {id: 13, nombre: 'Aluminum', correo: '', telefono: '', rol: ''},
-  {id: 14, nombre: 'Silicon', correo: '', telefono: '', rol: ''},
-  {id: 15, nombre: 'Phosphorus', correo: '', telefono: '', rol: ''},
-  {id: 16, nombre: 'Sulfur', correo: '', telefono: '', rol: ''},
-  {id: 17, nombre: 'Chlorine', correo: '', telefono: '', rol: ''},
-  {id: 18, nombre: 'Argon', correo: '', telefono: '', rol: ''},
-  {id: 19, nombre: 'Potassium', correo: '', telefono: '', rol: ''},
-  {id: 20, nombre: 'Calcium', correo: '', telefono: '', rol: ''},
+  {id: 1, nombre_completo: 'Hydrogen', email: '', telefono: '', rol: ''},
+  {id: 2, nombre_completo: 'Helium', email: '', telefono: '', rol: ''},
+  {id: 3, nombre_completo: 'Lithium', email: '', telefono: '', rol: ''},
+  {id: 4, nombre_completo: 'Beryllium', email: '', telefono: '', rol: ''},
+  {id: 5, nombre_completo: 'Boron', email: '', telefono: '', rol: ''},
+  {id: 6, nombre_completo: 'Carbon', email: '', telefono: '', rol: ''},
+  {id: 7, nombre_completo: 'Nitrogen', email: '', telefono: '', rol: ''},
+  {id: 8, nombre_completo: 'Oxygen', email: '', telefono: '', rol: ''},
+  {id: 9, nombre_completo: 'Fluorine', email: '', telefono: '', rol: ''},
+  {id: 10, nombre_completo: 'Neon', email: '', telefono: '', rol: ''},
+  {id: 11, nombre_completo: 'Sodium', email: '', telefono: '', rol: ''},
+  {id: 12, nombre_completo: 'Magnesium', email: '', telefono: '', rol: ''},
+  {id: 13, nombre_completo: 'Aluminum', email: '', telefono: '', rol: ''},
+  {id: 14, nombre_completo: 'Silicon', email: '', telefono: '', rol: ''},
+  {id: 15, nombre_completo: 'Phosphorus', email: '', telefono: '', rol: ''},
+  {id: 16, nombre_completo: 'Sulfur', email: '', telefono: '', rol: ''},
+  {id: 17, nombre_completo: 'Chlorine', email: '', telefono: '', rol: ''},
+  {id: 18, nombre_completo: 'Argon', email: '', telefono: '', rol: ''},
+  {id: 19, nombre_completo: 'Potassium', email: '', telefono: '', rol: ''},
+  {id: 20, nombre_completo: 'Calcium', email: '', telefono: '', rol: ''},
 ];
 
 /**
@@ -94,10 +93,16 @@ export class EmpleadosTablaDataSource extends DataSource<Empleados> {
     return data.sort((a, b) => {
       const isAsc = this.sort?.direction === 'asc';
       switch (this.sort?.active) {
-        case 'name': return compare(a.nombre, b.nombre, isAsc);
+        case 'name': return compare(a.nombre_completo, b.nombre_completo, isAsc);
         case 'id': return compare(+a.id, +b.id, isAsc);
         default: return 0;
       }
+    });
+  }
+
+  setEmpleadosData(data: Empleados[]): void {
+    data.forEach(element => {
+      this.data.push(element);
     });
   }
 }

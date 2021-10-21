@@ -2,10 +2,10 @@
 export interface Empresas {
     id: number;
     nit: string;
-    nombre: string;
-    correo: string;
+    razon_social: string;
+    email: string;
+    contacto: string;
     telefono: string;
     direccion: string;
-    contacto: string;
     ciudad: string;
   }

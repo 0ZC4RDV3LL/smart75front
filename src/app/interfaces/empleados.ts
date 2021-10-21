@@ -1,7 +1,7 @@
 export interface Empleados {
     id: number;
-    nombre: string;
-    correo: string;
+    nombre_completo: string;
+    email: string;
     telefono: string;
     rol: string;
 }

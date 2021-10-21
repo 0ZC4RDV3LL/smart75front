@@ -8,12 +8,12 @@ import { Empresas } from '../interfaces/empresas';
 })
 export class EmpresasService {
 
-  apiURL = "";
+  apiURL = "https://smart75-mintic.herokuapp.com/api";
 
   constructor(private http: HttpClient) { }
 
   public getEmpresas(): Observable<Empresas[]> {
-    return this.http.get<Empresas[]>(`${this.apiURL}/clientes`);
+    return this.http.get<Empresas[]>(`${this.apiURL}/clientes/`);
   }
 
   public getEmpresa(id: number): Observable<Empresas> {

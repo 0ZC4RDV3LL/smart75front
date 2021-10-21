@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { EmpleadosTablaDataSource } from './empleados-tabla-datasource';
 import { Empleados } from '../../interfaces/empleados';
+import { EmpleadosService } from 'src/app/services/empleados.service';
 
 @Component({
   selector: 'app-empleados-tabla',
@@ -17,10 +18,11 @@ export class EmpleadosTablaComponent implements AfterViewInit {
   dataSource: EmpleadosTablaDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'nombre', 'correo', 'telefono', 'rol'];
+  displayedColumns = ['id', 'nombre_completo', 'email', 'telefono', 'rol'];
 
-  constructor() {
+  constructor(private empleadosService: EmpleadosService) {
     this.dataSource = new EmpleadosTablaDataSource();
+    this.empleadosService.getEmpleados().subscribe(data => this.dataSource.setEmpleadosData(data));
   }
 
   ngAfterViewInit(): void {
