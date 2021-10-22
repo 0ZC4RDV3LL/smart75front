@@ -7,45 +7,45 @@ import { Equipos } from 'src/app/interfaces/equipos';
 
 // TODO: replace this with real data from your application
 const EXAMPLE_DATA: Equipos[] = [
-  {id: 1, tipo: 'Hydrogen', marca:'', serial: '', modelo: '', cliente: '', observaciones
+  {id: 1, tipo: 'Hydrogen', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
 : ''},
-  {id: 2, tipo: 'Helium', marca:'', serial: '', modelo: '', cliente: '', observaciones
+  {id: 2, tipo: 'Helium', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
 : ''},
-  {id: 3, tipo: 'Lithium', marca:'', serial: '', modelo: '', cliente: '', observaciones
+  {id: 3, tipo: 'Lithium', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
 : ''},
-  {id: 4, tipo: 'Beryllium', marca:'', serial: '', modelo: '', cliente: '', observaciones
+  {id: 4, tipo: 'Beryllium', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
 : ''},
-  {id: 5, tipo: 'Boron', marca:'', serial: '', modelo: '', cliente: '', observaciones
+  {id: 5, tipo: 'Boron', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
 : ''},
-  {id: 6, tipo: 'Carbon', marca:'', serial: '', modelo: '', cliente: '', observaciones
+  {id: 6, tipo: 'Carbon', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
 : ''},
-  {id: 7, tipo: 'Nitrogen', marca:'', serial: '', modelo: '', cliente: '', observaciones
+  {id: 7, tipo: 'Nitrogen', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
 : ''},
-  {id: 8, tipo: 'Oxygen', marca:'', serial: '', modelo: '', cliente: '', observaciones
+  {id: 8, tipo: 'Oxygen', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
 : ''},
-  {id: 9, tipo: 'Fluorine', marca:'', serial: '', modelo: '', cliente: '', observaciones
+  {id: 9, tipo: 'Fluorine', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
 : ''},
-  {id: 10, tipo: 'Neon', marca:'', serial: '', modelo: '', cliente: '', observaciones
+  {id: 10, tipo: 'Neon', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
 : ''},
-  {id: 11, tipo: 'Sodium', marca:'', serial: '', modelo: '', cliente: '', observaciones
+  {id: 11, tipo: 'Sodium', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
 : ''},
-  {id: 12, tipo: 'Magnesium', marca:'', serial: '', modelo: '', cliente: '', observaciones
+  {id: 12, tipo: 'Magnesium', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
 : ''},
-  {id: 13, tipo: 'Aluminum', marca:'', serial: '', modelo: '', cliente: '', observaciones
+  {id: 13, tipo: 'Aluminum', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
 : ''},
-  {id: 14, tipo: 'Silicon', marca:'', serial: '', modelo: '', cliente: '', observaciones
+  {id: 14, tipo: 'Silicon', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
 : ''},
-  {id: 15, tipo: 'Phosphorus', marca:'', serial: '', modelo: '', cliente: '', observaciones
+  {id: 15, tipo: 'Phosphorus', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
 : ''},
-  {id: 16, tipo: 'Sulfur', marca:'', serial: '', modelo: '', cliente: '', observaciones
+  {id: 16, tipo: 'Sulfur', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
 : ''},
-  {id: 17, tipo: 'Chlorine', marca:'', serial: '', modelo: '', cliente: '', observaciones
+  {id: 17, tipo: 'Chlorine', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
 : ''},
-  {id: 18, tipo: 'Argon', marca:'', serial: '', modelo: '', cliente: '', observaciones
+  {id: 18, tipo: 'Argon', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
 : ''},
-  {id: 19, tipo: 'Potassium', marca:'', serial: '', modelo: '', cliente: '', observaciones
+  {id: 19, tipo: 'Potassium', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
 : ''},
-  {id: 20, tipo: 'Calcium', marca:'', serial: '', modelo: '', cliente: '', observaciones
+  {id: 20, tipo: 'Calcium', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
 : ''},
 ];
 
@@ -118,6 +118,13 @@ export class EquiposTablaDataSource extends DataSource<Equipos> {
       }
     });
   }
+
+  setEquiposData(data: Equipos[]): void {
+    data.forEach(element => {
+      this.data.push(element);
+    });
+  }
+
 }
 
 /** Simple sort comparator for example ID/Name columns (for client-side sorting). */

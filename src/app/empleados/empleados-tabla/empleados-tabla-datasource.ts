@@ -35,12 +35,12 @@ const EXAMPLE_DATA: Empleados[] = [
  * (including sorting, pagination, and filtering).
  */
 export class EmpleadosTablaDataSource extends DataSource<Empleados> {
-  data: Empleados[] = EXAMPLE_DATA;
+  // data: Empleados[] = EXAMPLE_DATA;
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
    
 
-  constructor() {
+  constructor(public data : Empleados[]) {
     super();
   }  
 

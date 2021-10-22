@@ -16,7 +16,7 @@ const routes: Routes = [
   // {path: 'empresas', loadChildren:() => import('./empresas/empresas.module').then(m => m.EmpresasModule)},
   // {path: 'equipos', loadChildren: () => import('./equipos/equipos.module').then(m => m.EquiposModule)},
   // {path: 'mantenimientos', loadChildren: () => import('./mantenimientos/mantenimientos.module').then(m => m.MantenimientosModule)},
-  { path: 'login', component: LoginComponent},
+  { path: '', component: LoginComponent},
   { path: 'home', component: NavegacionComponent,
   children: [
     { path: 'empleados', component: EmpleadosTablaComponent},

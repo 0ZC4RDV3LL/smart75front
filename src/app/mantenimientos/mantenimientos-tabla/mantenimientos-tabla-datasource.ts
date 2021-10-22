@@ -7,26 +7,26 @@ import { Mantenimientos } from 'src/app/interfaces/mantenimientos';
 
 // TODO: replace this with real data from your application
 const EXAMPLE_DATA: Mantenimientos[] = [
-  {id: 1, costo: 0, ingreso: '', salida: '', estado: false, equipo: '', tecnico: '', observaciones:''},
-  {id: 2, costo: 0, ingreso: '', salida: '', estado: false, equipo: '', tecnico: '', observaciones:''},
-  {id: 3, costo: 0, ingreso: '', salida: '', estado: false, equipo: '', tecnico: '', observaciones:''},
-  {id: 4, costo: 0, ingreso: '', salida: '', estado: false, equipo: '', tecnico: '', observaciones:''},
-  {id: 5, costo: 0, ingreso: '', salida: '', estado: false, equipo: '', tecnico: '', observaciones:''},
-  {id: 6, costo: 0, ingreso: '', salida: '', estado: false, equipo: '', tecnico: '', observaciones:''},
-  {id: 7, costo: 0, ingreso: '', salida: '', estado: false, equipo: '', tecnico: '', observaciones:''},
-  {id: 8, costo: 0, ingreso: '', salida: '', estado: false, equipo: '', tecnico: '', observaciones:''},
-  {id: 9, costo: 0, ingreso: '', salida: '', estado: false, equipo: '', tecnico: '', observaciones:''},
-  {id: 10, costo: 0, ingreso: '', salida: '', estado: false, equipo: '', tecnico: '', observaciones:''},
-  {id: 11, costo: 0, ingreso: '', salida: '', estado: false, equipo: '', tecnico: '', observaciones:''},
-  {id: 12, costo: 0, ingreso: '', salida: '', estado: false, equipo: '', tecnico: '', observaciones:''},
-  {id: 13, costo: 0, ingreso: '', salida: '', estado: false, equipo: '', tecnico: '', observaciones:''},
-  {id: 14, costo: 0, ingreso: '', salida: '', estado: false, equipo: '', tecnico: '', observaciones:''},
-  {id: 15, costo: 0, ingreso: '', salida: '', estado: false, equipo: '', tecnico: '', observaciones:''},
-  {id: 16, costo: 0, ingreso: '', salida: '', estado: false, equipo: '', tecnico: '', observaciones:''},
-  {id: 17, costo: 0, ingreso: '', salida: '', estado: false, equipo: '', tecnico: '', observaciones:''},
-  {id: 18, costo: 0, ingreso: '', salida: '', estado: false, equipo: '', tecnico: '', observaciones:''},
-  {id: 19, costo: 0, ingreso: '', salida: '', estado: false, equipo: '', tecnico: '', observaciones:''},
-  {id: 20, costo: 0, ingreso: '', salida: '', estado: false, equipo: '', tecnico: '', observaciones:''},
+  {id: 1, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
+  {id: 2, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
+  {id: 3, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
+  {id: 4, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
+  {id: 5, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
+  {id: 6, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
+  {id: 7, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
+  {id: 8, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
+  {id: 9, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
+  {id: 10, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
+  {id: 11, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
+  {id: 12, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
+  {id: 13, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
+  {id: 14, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
+  {id: 15, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
+  {id: 16, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
+  {id: 17, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
+  {id: 18, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
+  {id: 19, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
+  {id: 20, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
 ];
 
 /**
@@ -35,13 +35,15 @@ const EXAMPLE_DATA: Mantenimientos[] = [
  * (including sorting, pagination, and filtering).
  */
 export class MantenimientosTablaDataSource extends DataSource<Mantenimientos> {
-  data: Mantenimientos[] = EXAMPLE_DATA;
+  data: Mantenimientos[] = [];
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
 
   constructor() {
     super();
+    
   }
+  
 
   /**
    * Connect this data source to the table. The table will only update when
@@ -96,6 +98,12 @@ export class MantenimientosTablaDataSource extends DataSource<Mantenimientos> {
         case 'id': return compare(+a.id, +b.id, isAsc);
         default: return 0;
       }
+    });
+  }
+
+  public setMantenimientosData(data: Mantenimientos[]): void {
+    data.forEach(element => {
+      this.data.push(element);
     });
   }
 }

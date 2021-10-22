@@ -8,12 +8,12 @@ import { Mantenimientos } from '../interfaces/mantenimientos';
 })
 export class MantenimientosService {
   
-  apiURL = "";
+  apiURL = "https://smart75-mintic.herokuapp.com/api";
 
   constructor(private http: HttpClient) { }
 
   public getMantenimientos(): Observable<Mantenimientos[]> {
-    return this.http.get<Mantenimientos[]>(`${this.apiURL}/mantenimientos`);
+    return this.http.get<Mantenimientos[]>(`${this.apiURL}/mantenimientos/`);
   }
 
   public getMantenimiento(id: number): Observable<Mantenimientos> {
@@ -21,11 +21,11 @@ export class MantenimientosService {
   }
 
   public addMantenimiento(mantenimiento: Mantenimientos): Observable<Mantenimientos> {
-    return this.http.post<Mantenimientos>(`${this.apiURL}/mantenimientos`, mantenimiento);
+    return this.http.post<Mantenimientos>(`${this.apiURL}/mantenimientos/`, mantenimiento);
   }
 
   public updateMantenimiento(mantenimiento: Mantenimientos): Observable<Mantenimientos> {
-    return this.http.put<Mantenimientos>(`${this.apiURL}/mantenimientos`, mantenimiento);
+    return this.http.put<Mantenimientos>(`${this.apiURL}/mantenimientos/`, mantenimiento);
   }
 
   public deleteMantenimiento(id: number): void {

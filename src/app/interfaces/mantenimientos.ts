@@ -3,11 +3,11 @@
 export interface Mantenimientos {
     id: number;
     costo: number;
-    ingreso: string;
-    salida: string;
+    fecha_entrada: string;
+    fecha_salida: string;
     estado: boolean;
     equipo: string;
-    tecnico: string;
+    empleado: string;
     observaciones: string;
   }
   

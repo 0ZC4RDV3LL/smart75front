@@ -13,8 +13,8 @@ export class EmpleadosFormularioComponent {
 
   
   addressForm = this.fb.group({
-    nombre: [null, Validators.required],
-    correo: [null, Validators.required],
+    nombre_completo: [null, Validators.required],
+    email: [null, Validators.required],
     telefono: [null, Validators.compose([
       Validators.required, Validators.minLength(7), Validators.maxLength(10)])
     ],
@@ -41,7 +41,9 @@ export class EmpleadosFormularioComponent {
 
       this.empleadosService.addEmpleado(empleado);
 
-      this.router.navigate(['home/empleados']);   
+      this.router.navigate(['home/empleados']);
+      
+      console.log(empleado);
       
     }
   }

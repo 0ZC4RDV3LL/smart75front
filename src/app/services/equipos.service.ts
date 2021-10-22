@@ -8,12 +8,12 @@ import { Equipos } from '../interfaces/equipos';
 })
 export class EquiposService {
 
-  apiURL = "";
+  apiURL = "https://smart75-mintic.herokuapp.com/api";
 
   constructor(private http: HttpClient) { }
 
   public getEquipos(): Observable<Equipos[]>{
-    return this.http.get<Equipos[]>(`${this.apiURL}/equipos`);
+    return this.http.get<Equipos[]>(`${this.apiURL}/equipos/`);
   }
 
   public getEquipo(id: number): Observable<Equipos>{
@@ -21,11 +21,11 @@ export class EquiposService {
   }
 
   public addEquipo(equipo: Equipos): Observable<Equipos>{
-    return this.http.post<Equipos>(`${this.apiURL}/equipos`, equipo);
+    return this.http.post<Equipos>(`${this.apiURL}/equipos/`, equipo);
   }
 
   public updateEquipo(equipo: Equipos): Observable<Equipos> {
-    return this.http.put<Equipos>(`${this.apiURL}/equipos`, equipo);
+    return this.http.put<Equipos>(`${this.apiURL}/equipos/`, equipo);
   }
 
   public deleteEquipo(id: number): void {
