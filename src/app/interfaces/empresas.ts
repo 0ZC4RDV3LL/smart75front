@@ -1,11 +1,11 @@
 // TODO: Replace this with your own data model type
 export interface Empresas {
     id: number;
-    nit: string;
+    nit: number;
     razon_social: string;
     email: string;
     contacto: string;
-    telefono: string;
+    telefono: number;
     direccion: string;
     ciudad: string;
   }

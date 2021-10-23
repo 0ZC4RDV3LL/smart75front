@@ -20,17 +20,9 @@ export class LoginComponent {
     {name: 'Admistrador', abbreviation: 'admin'},
     {name: 'Jefe de Área', abbreviation: 'jefe'}
   ];
-
-  botonDeshabilitado = true;
-
+  
   constructor(private fb: FormBuilder, private router: Router) {
     const navigation = this.router.getCurrentNavigation();
-  }
-
-  onChange(): void {
-    if(this.addressForm.valid) {
-      this.botonDeshabilitado = false;
-    }
   }
 
   onSubmit(): void {

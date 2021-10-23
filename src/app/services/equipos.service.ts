@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Equipos } from '../interfaces/equipos';
 
 @Injectable({
@@ -8,27 +9,25 @@ import { Equipos } from '../interfaces/equipos';
 })
 export class EquiposService {
 
-  apiURL = "https://smart75-mintic.herokuapp.com/api";
-
   constructor(private http: HttpClient) { }
 
   public getEquipos(): Observable<Equipos[]>{
-    return this.http.get<Equipos[]>(`${this.apiURL}/equipos/`);
+    return this.http.get<Equipos[]>(`${environment.apiURL}/equipos/`);
   }
 
   public getEquipo(id: number): Observable<Equipos>{
-    return this.http.get<Equipos>(`${this.apiURL}/equipos/${id}`);
+    return this.http.get<Equipos>(`${environment.apiURL}/equipos/${id}`);
   }
 
   public addEquipo(equipo: Equipos): Observable<Equipos>{
-    return this.http.post<Equipos>(`${this.apiURL}/equipos/`, equipo);
+    return this.http.post<Equipos>(`${environment.apiURL}/equipos/`, equipo);
   }
 
   public updateEquipo(equipo: Equipos): Observable<Equipos> {
-    return this.http.put<Equipos>(`${this.apiURL}/equipos/`, equipo);
+    return this.http.put<Equipos>(`${environment.apiURL}/equipos/`, equipo);
   }
 
   public deleteEquipo(id: number): void {
-    this.http.delete<void>(`${this.apiURL}/equipos/${id}`);
+    this.http.delete<void>(`${environment.apiURL}/equipos/${id}`);
   }
 }

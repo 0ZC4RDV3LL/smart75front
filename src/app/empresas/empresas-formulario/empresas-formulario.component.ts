@@ -1,6 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Empresas } from 'src/app/interfaces/empresas';
+import { EmpresasService } from 'src/app/services/empresas.service';
 
 @Component({
   selector: 'app-empresas-formulario',
@@ -9,18 +12,16 @@ import { Router } from '@angular/router';
 })
 export class EmpresasFormularioComponent {
   addressForm = this.fb.group({
-    nombre: [null, Validators.required],
+    razon_social: [null, Validators.required],
     nit: [null, Validators.required],
     direccion: [null, Validators.required],
     ciudad: [null, Validators.required],
     contacto: [null, Validators.required],
-    correo: [null, Validators.required, Validators.email],
+    email: [null, Validators.required],
     telefono: [null, Validators.compose([
       Validators.required, Validators.minLength(7), Validators.maxLength(10)])
     ]
   });
-
-  botonDehabilitado = true;
 
   states = [
     {name: 'Alabama', abbreviation: 'AL'},
@@ -84,20 +85,17 @@ export class EmpresasFormularioComponent {
     {name: 'Wyoming', abbreviation: 'WY'}
   ];
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private empresasService: EmpresasService) {
     const navigation = this.router.getCurrentNavigation();
   }
 
-  onChange(): void {
-    if (this.addressForm.valid) {
-      this.botonDehabilitado = false;
-    }
-  }
-
   onSubmit(): void {
-    if (this.addressForm.valid) {
-      alert('Empresa registrada!');
-      this.router.navigate(['home/empresas']);
-    }
+    console.log(this.addressForm.value);
+    
+    this.empresasService.addEmpresa(this.addressForm.value).subscribe(
+      (response: Empresas) => {console.log(response)},
+      (err: HttpErrorResponse) => {alert(err.message)}
+    );
+    this.router.navigate(['home/empresas']);    
   }
 }

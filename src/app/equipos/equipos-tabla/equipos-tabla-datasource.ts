@@ -7,46 +7,26 @@ import { Equipos } from 'src/app/interfaces/equipos';
 
 // TODO: replace this with real data from your application
 const EXAMPLE_DATA: Equipos[] = [
-  {id: 1, tipo: 'Hydrogen', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
-: ''},
-  {id: 2, tipo: 'Helium', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
-: ''},
-  {id: 3, tipo: 'Lithium', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
-: ''},
-  {id: 4, tipo: 'Beryllium', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
-: ''},
-  {id: 5, tipo: 'Boron', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
-: ''},
-  {id: 6, tipo: 'Carbon', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
-: ''},
-  {id: 7, tipo: 'Nitrogen', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
-: ''},
-  {id: 8, tipo: 'Oxygen', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
-: ''},
-  {id: 9, tipo: 'Fluorine', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
-: ''},
-  {id: 10, tipo: 'Neon', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
-: ''},
-  {id: 11, tipo: 'Sodium', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
-: ''},
-  {id: 12, tipo: 'Magnesium', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
-: ''},
-  {id: 13, tipo: 'Aluminum', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
-: ''},
-  {id: 14, tipo: 'Silicon', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
-: ''},
-  {id: 15, tipo: 'Phosphorus', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
-: ''},
-  {id: 16, tipo: 'Sulfur', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
-: ''},
-  {id: 17, tipo: 'Chlorine', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
-: ''},
-  {id: 18, tipo: 'Argon', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
-: ''},
-  {id: 19, tipo: 'Potassium', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
-: ''},
-  {id: 20, tipo: 'Calcium', marca:'', numero_serial: '', modelo: '', cliente: '', observaciones
-: ''},
+  {id: 1, tipo: 'Hydrogen', marca:'', numero_serial: '', modelo: '', cliente: 0, observaciones: ''},
+  {id: 2, tipo: 'Helium', marca:'', numero_serial: '', modelo: '', cliente: 0, observaciones: ''},
+  {id: 3, tipo: 'Lithium', marca:'', numero_serial: '', modelo: '', cliente: 0, observaciones: ''},
+  {id: 4, tipo: 'Beryllium', marca:'', numero_serial: '', modelo: '', cliente: 0, observaciones: ''},
+  {id: 5, tipo: 'Boron', marca:'', numero_serial: '', modelo: '', cliente: 0, observaciones: ''},
+  {id: 6, tipo: 'Carbon', marca:'', numero_serial: '', modelo: '', cliente: 0, observaciones: ''},
+  {id: 7, tipo: 'Nitrogen', marca:'', numero_serial: '', modelo: '', cliente: 0, observaciones: ''},
+  {id: 8, tipo: 'Oxygen', marca:'', numero_serial: '', modelo: '', cliente: 0, observaciones: ''},
+  {id: 9, tipo: 'Fluorine', marca:'', numero_serial: '', modelo: '', cliente: 0, observaciones: ''},
+  {id: 10, tipo: 'Neon', marca:'', numero_serial: '', modelo: '', cliente: 0, observaciones: ''},
+  {id: 11, tipo: 'Sodium', marca:'', numero_serial: '', modelo: '', cliente: 0, observaciones: ''},
+  {id: 12, tipo: 'Magnesium', marca:'', numero_serial: '', modelo: '', cliente: 0, observaciones: ''},
+  {id: 13, tipo: 'Aluminum', marca:'', numero_serial: '', modelo: '', cliente: 0, observaciones: ''},
+  {id: 14, tipo: 'Silicon', marca:'', numero_serial: '', modelo: '', cliente: 0, observaciones: ''},
+  {id: 15, tipo: 'Phosphorus', marca:'', numero_serial: '', modelo: '', cliente: 0, observaciones: ''},
+  {id: 16, tipo: 'Sulfur', marca:'', numero_serial: '', modelo: '', cliente: 0, observaciones: ''},
+  {id: 17, tipo: 'Chlorine', marca:'', numero_serial: '', modelo: '', cliente: 0, observaciones: ''},
+  {id: 18, tipo: 'Argon', marca:'', numero_serial: '', modelo: '', cliente: 0, observaciones: ''},
+  {id: 19, tipo: 'Potassium', marca:'', numero_serial: '', modelo: '', cliente: 0, observaciones: ''},
+  {id: 20, tipo: 'Calcium', marca:'', numero_serial: '', modelo: '', cliente: 0, observaciones: ''},
 ];
 
 /**
@@ -55,11 +35,11 @@ const EXAMPLE_DATA: Equipos[] = [
  * (including sorting, pagination, and filtering).
  */
 export class EquiposTablaDataSource extends DataSource<Equipos> {
-  data: Equipos[] = EXAMPLE_DATA;
+  
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
 
-  constructor() {
+  constructor(public data: Equipos[]) {
     super();
   }
 
@@ -116,12 +96,6 @@ export class EquiposTablaDataSource extends DataSource<Equipos> {
         case 'id': return compare(+a.id, +b.id, isAsc);
         default: return 0;
       }
-    });
-  }
-
-  setEquiposData(data: Equipos[]): void {
-    data.forEach(element => {
-      this.data.push(element);
     });
   }
 

@@ -8,26 +8,26 @@ import { EmpresasService } from 'src/app/services/empresas.service';
 
 // TODO: replace this with real data from your application
 const EXAMPLE_DATA: Empresas[] = [
-  {id: 1, nit: 'Hydrogen', razon_social: '', email: '', telefono: '', direccion: '', contacto: '', ciudad: ''},
-  {id: 2, nit: 'Helium', razon_social: '', email: '', telefono: '', direccion: '', contacto: '', ciudad: ''},
-  {id: 3, nit: 'Lithium', razon_social: '', email: '', telefono: '', direccion: '', contacto: '', ciudad: ''},
-  {id: 4, nit: 'Beryllium', razon_social: '', email: '', telefono: '', direccion: '', contacto: '', ciudad: ''},
-  {id: 5, nit: 'Boron', razon_social: '', email: '', telefono: '', direccion: '', contacto: '', ciudad: ''},
-  {id: 6, nit: 'Carbon', razon_social: '', email: '', telefono: '', direccion: '', contacto: '', ciudad: ''},
-  {id: 7, nit: 'Nitrogen', razon_social: '', email: '', telefono: '', direccion: '', contacto: '', ciudad: ''},
-  {id: 8, nit: 'Oxygen', razon_social: '', email: '', telefono: '', direccion: '', contacto: '', ciudad: ''},
-  {id: 9, nit: 'Fluorine', razon_social: '', email: '', telefono: '', direccion: '', contacto: '', ciudad: ''},
-  {id: 10, nit: 'Neon', razon_social: '', email: '', telefono: '', direccion: '', contacto: '', ciudad: ''},
-  {id: 11, nit: 'Sodium', razon_social: '', email: '', telefono: '', direccion: '', contacto: '', ciudad: ''},
-  {id: 12, nit: 'Magnesium', razon_social: '', email: '', telefono: '', direccion: '', contacto: '', ciudad: ''},
-  {id: 13, nit: 'Aluminum', razon_social: '', email: '', telefono: '', direccion: '', contacto: '', ciudad: ''},
-  {id: 14, nit: 'Silicon', razon_social: '', email: '', telefono: '', direccion: '', contacto: '', ciudad: ''},
-  {id: 15, nit: 'Phosphorus', razon_social: '', email: '', telefono: '', direccion: '', contacto: '', ciudad: ''},
-  {id: 16, nit: 'Sulfur', razon_social: '', email: '', telefono: '', direccion: '', contacto: '', ciudad: ''},
-  {id: 17, nit: 'Chlorine', razon_social: '', email: '', telefono: '', direccion: '', contacto: '', ciudad: ''},
-  {id: 18, nit: 'Argon', razon_social: '', email: '', telefono: '', direccion: '', contacto: '', ciudad: ''},
-  {id: 19, nit: 'Potassium', razon_social: '', email: '', telefono: '', direccion: '', contacto: '', ciudad: ''},
-  {id: 20, nit: 'Calcium', razon_social: '', email: '', telefono: '', direccion: '', contacto: '', ciudad: ''},
+  {id: 1, razon_social: 'Hydrogen', nit: 900900000, email: '', telefono: 0, direccion: '', contacto: '', ciudad: ''},
+  {id: 2, razon_social: 'Helium', nit: 900900000, email: '', telefono: 0, direccion: '', contacto: '', ciudad: ''},
+  {id: 3, razon_social: 'Lithium', nit: 900900000, email: '', telefono: 0, direccion: '', contacto: '', ciudad: ''},
+  {id: 4, razon_social: 'Beryllium', nit: 900900000, email: '', telefono: 0, direccion: '', contacto: '', ciudad: ''},
+  {id: 5, razon_social: 'Boron', nit: 900900000, email: '', telefono: 0, direccion: '', contacto: '', ciudad: ''},
+  {id: 6, razon_social: 'Carbon', nit: 900900000, email: '', telefono: 0, direccion: '', contacto: '', ciudad: ''},
+  {id: 7, razon_social: 'Nitrogen', nit: 900900000, email: '', telefono: 0, direccion: '', contacto: '', ciudad: ''},
+  {id: 8, razon_social: 'Oxygen', nit: 900900000, email: '', telefono: 0, direccion: '', contacto: '', ciudad: ''},
+  {id: 9, razon_social: 'Fluorine', nit: 900900000, email: '', telefono: 0, direccion: '', contacto: '', ciudad: ''},
+  {id: 10, razon_social: 'Neon', nit: 900900000, email: '', telefono: 0, direccion: '', contacto: '', ciudad: ''},
+  {id: 11, razon_social: 'Sodium', nit: 900900000, email: '', telefono: 0, direccion: '', contacto: '', ciudad: ''},
+  {id: 12, razon_social: 'Magnesium', nit: 900900000, email: '', telefono: 0, direccion: '', contacto: '', ciudad: ''},
+  {id: 13, razon_social: 'Aluminum', nit: 900900000, email: '', telefono: 0, direccion: '', contacto: '', ciudad: ''},
+  {id: 14, razon_social: 'Silicon', nit: 900900000, email: '', telefono: 0, direccion: '', contacto: '', ciudad: ''},
+  {id: 15, razon_social: 'Phosphorus', nit: 900900000, email: '', telefono: 0, direccion: '', contacto: '', ciudad: ''},
+  {id: 16, razon_social: 'Sulfur', nit: 900900000, email: '', telefono: 0, direccion: '', contacto: '', ciudad: ''},
+  {id: 17, razon_social: 'Chlorine', nit: 900900000, email: '', telefono: 0, direccion: '', contacto: '', ciudad: ''},
+  {id: 18, razon_social: 'Argon', nit: 900900000, email: '', telefono: 0, direccion: '', contacto: '', ciudad: ''},
+  {id: 19, razon_social: 'Potassium', nit: 900900000, email: '', telefono: 0, direccion: '', contacto: '', ciudad: ''},
+  {id: 20, razon_social: 'Calcium', nit: 900900000, email: '', telefono: 0, direccion: '', contacto: '', ciudad: ''},
 ];
 
 /**
@@ -36,11 +36,10 @@ const EXAMPLE_DATA: Empresas[] = [
  * (including sorting, pagination, and filtering).
  */
 export class EmpresasTablaDataSource extends DataSource<Empresas> {
-  data: Empresas[] = EXAMPLE_DATA;
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
 
-  constructor() {
+  constructor(public data: Empresas[]) {
     super();
     
   }

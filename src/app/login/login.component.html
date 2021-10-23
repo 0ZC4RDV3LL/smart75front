@@ -5,7 +5,7 @@
       <app-banner></app-banner>
     </div>
     <div class="col">
-      <form [formGroup]="addressForm" novalidate (change)="onChange();" (ngSubmit)="onSubmit()">
+      <form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
         <mat-card class="shipping-card">
           <mat-card-header>
             <mat-card-title>Login</mat-card-title>
@@ -47,7 +47,7 @@
               </div>
             </div>         
           </mat-card-content>
-          <button mat-raised-button color="primary" type="submit" [disabled]="botonDeshabilitado">Ingresar</button>   
+          <button mat-raised-button color="primary" type="submit" [disabled]="addressForm.invalid">Ingresar</button>   
         </mat-card>
       </form>
       

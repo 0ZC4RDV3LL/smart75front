@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -11,7 +12,6 @@ import { EmpleadosService } from 'src/app/services/empleados.service';
 })
 export class EmpleadosFormularioComponent {
 
-  
   addressForm = this.fb.group({
     nombre_completo: [null, Validators.required],
     email: [null, Validators.required],
@@ -19,32 +19,23 @@ export class EmpleadosFormularioComponent {
       Validators.required, Validators.minLength(7), Validators.maxLength(10)])
     ],
     rol: ['tecnico', Validators.required]
-  });
-  
-  botonDeshabilitado = true;
+  });  
   
   constructor(private fb: FormBuilder, private router: Router, private empleadosService: EmpleadosService) {
     const navigation = this.router.getCurrentNavigation();
     
-  }
-
-  onChange():void {
-    if(this.addressForm.valid) {
-      this.botonDeshabilitado = false;
-    }
-  }
+  }  
 
   onSubmit(): void {
-    if (this.addressForm.valid) {
-      
-      const empleado = this.addressForm.value;
+    if (this.addressForm.valid) { 
 
-      this.empleadosService.addEmpleado(empleado);
-
+      this.empleadosService.addEmpleado(this.addressForm.value).subscribe(
+        (response: Empleados) => { console.log(response) },
+        (error: HttpErrorResponse) => {alert(error.message)}
+        
+      );
       this.router.navigate(['home/empleados']);
-      
-      console.log(empleado);
-      
+      console.log(this.addressForm.value); 
     }
   }
 }

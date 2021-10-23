@@ -1,4 +1,4 @@
-<form [formGroup]="addressForm" novalidate (change)="onChange();" (ngSubmit)="onSubmit()">
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
   <mat-card class="shipping-card">
     <mat-card-header>
       <mat-card-title>Información del Equipo</mat-card-title>
@@ -26,8 +26,8 @@
       </div>
       <div class="col">
         <mat-form-field class="full-width">
-          <input matInput placeholder="Serial" formControlName="serial">
-          <mat-error *ngIf="addressForm.controls['serial'].hasError('required')">
+          <input matInput placeholder="Serial" formControlName="numero_serial">
+          <mat-error *ngIf="addressForm.controls['numero_serial'].hasError('required')">
             El serial del equipo es <strong>requerido</strong>
           </mat-error>
         </mat-form-field>
@@ -40,19 +40,31 @@
           </mat-error>
         </mat-form-field>
       </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Cliente" formControlName="cliente" type="number">
+            <mat-error *ngIf="addressForm.controls['cliente'].hasError('required')">
+              El cliente es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>      
+
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
             <textarea matInput placeholder="Observaciones" formControlName="observaciones"></textarea>
             <mat-error *ngIf="addressForm.controls['observaciones'].hasError('required')">
-              La observaciones son <strong>observaciones</strong>
+              La observaciones son <strong>requeridas</strong>
             </mat-error>
           </mat-form-field>
         </div>
       </div>      
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit" [disabled]="botonDeshabilitado" >Enviar</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="addressForm.invalid" >Enviar</button>
     </mat-card-actions>
   </mat-card>
 </form>

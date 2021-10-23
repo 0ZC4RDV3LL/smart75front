@@ -5,7 +5,7 @@ export interface Equipos {
     marca: string;
     numero_serial: string;
     modelo: string;
-    cliente: string;
+    cliente: number;
     observaciones: string;
   }
   
