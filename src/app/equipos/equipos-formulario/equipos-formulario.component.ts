@@ -2,8 +2,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Equipos } from 'src/app/interfaces/equipos';
-import { EquiposService } from 'src/app/services/equipos.service';
+import { Equipos } from 'src/app/equipos/equipos';
+import { EquiposService } from 'src/app/equipos/service/equipos.service';
 
 @Component({
   selector: 'app-equipos-formulario',

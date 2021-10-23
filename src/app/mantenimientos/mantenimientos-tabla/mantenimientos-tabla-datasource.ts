@@ -3,30 +3,30 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-import { Mantenimientos } from 'src/app/interfaces/mantenimientos';
+import { Mantenimientos } from 'src/app/mantenimientos/mantenimientos';
 
 // TODO: replace this with real data from your application
 const EXAMPLE_DATA: Mantenimientos[] = [
-  {id: 1, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
-  {id: 2, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
-  {id: 3, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
-  {id: 4, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
-  {id: 5, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
-  {id: 6, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
-  {id: 7, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
-  {id: 8, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
-  {id: 9, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
-  {id: 10, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
-  {id: 11, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
-  {id: 12, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
-  {id: 13, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
-  {id: 14, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
-  {id: 15, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
-  {id: 16, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
-  {id: 17, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
-  {id: 18, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
-  {id: 19, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
-  {id: 20, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: '', empleado: '', observaciones:''},
+  {id: 1, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: 0, empleado: 0, observaciones:''},
+  {id: 2, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: 0, empleado: 0, observaciones:''},
+  {id: 3, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: 0, empleado: 0, observaciones:''},
+  {id: 4, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: 0, empleado: 0, observaciones:''},
+  {id: 5, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: 0, empleado: 0, observaciones:''},
+  {id: 6, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: 0, empleado: 0, observaciones:''},
+  {id: 7, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: 0, empleado: 0, observaciones:''},
+  {id: 8, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: 0, empleado: 0, observaciones:''},
+  {id: 9, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: 0, empleado: 0, observaciones:''},
+  {id: 10, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: 0, empleado: 0, observaciones:''},
+  {id: 11, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: 0, empleado: 0, observaciones:''},
+  {id: 12, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: 0, empleado: 0, observaciones:''},
+  {id: 13, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: 0, empleado: 0, observaciones:''},
+  {id: 14, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: 0, empleado: 0, observaciones:''},
+  {id: 15, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: 0, empleado: 0, observaciones:''},
+  {id: 16, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: 0, empleado: 0, observaciones:''},
+  {id: 17, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: 0, empleado: 0, observaciones:''},
+  {id: 18, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: 0, empleado: 0, observaciones:''},
+  {id: 19, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: 0, empleado: 0, observaciones:''},
+  {id: 20, costo: 0, fecha_entrada: '', fecha_salida: '', estado: false, equipo: 0, empleado: 0, observaciones:''},
 ];
 
 /**
@@ -35,11 +35,11 @@ const EXAMPLE_DATA: Mantenimientos[] = [
  * (including sorting, pagination, and filtering).
  */
 export class MantenimientosTablaDataSource extends DataSource<Mantenimientos> {
-  data: Mantenimientos[] = [];
+  
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
 
-  constructor() {
+  constructor(public data: Mantenimientos[]) {
     super();
     
   }
@@ -99,13 +99,7 @@ export class MantenimientosTablaDataSource extends DataSource<Mantenimientos> {
         default: return 0;
       }
     });
-  }
-
-  public setMantenimientosData(data: Mantenimientos[]): void {
-    data.forEach(element => {
-      this.data.push(element);
-    });
-  }
+  }  
 }
 
 /** Simple sort comparator for example ID/Name columns (for client-side sorting). */

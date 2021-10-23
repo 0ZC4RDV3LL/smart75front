@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Equipos } from '../interfaces/equipos';
+import { Equipos } from 'src/app/equipos/equipos';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +27,7 @@ export class EquiposService {
     return this.http.put<Equipos>(`${environment.apiURL}/equipos/`, equipo);
   }
 
-  public deleteEquipo(id: number): void {
-    this.http.delete<void>(`${environment.apiURL}/equipos/${id}`);
+  public deleteEquipo(id: number): Observable<Equipos> {
+    return this.http.delete<Equipos>(`${environment.apiURL}/equipos/${id}`);
   }
 }

@@ -1,10 +1,11 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ViewChild } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { Mantenimientos } from 'src/app/interfaces/mantenimientos';
-import { MantenimientosService } from 'src/app/services/mantenimientos.service';
+import { Mantenimientos } from 'src/app/mantenimientos/mantenimientos';
 import { MantenimientosTablaDataSource } from './mantenimientos-tabla-datasource';
+import { MantenimientosService } from 'src/app/mantenimientos/service/mantenimientos.service';
 
 
 @Component({
@@ -13,27 +14,42 @@ import { MantenimientosTablaDataSource } from './mantenimientos-tabla-datasource
   styleUrls: ['./mantenimientos-tabla.component.css']
 })
 
-export class MantenimientosTablaComponent implements AfterViewInit {
+export class MantenimientosTablaComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<Mantenimientos>;
-  dataSource: MantenimientosTablaDataSource;
+  dataSource!: MantenimientosTablaDataSource;
+  
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'costo', 'fecha_entrada', 'fecha_salida', 'estado', 'equipo', 'empleado', 'observaciones'];
+  displayedColumns = ['id', 'costo', 'fecha_entrada', 'fecha_salida', 'estado', 'equipo', 'empleado', 'observaciones', 'acciones'];
 
-  constructor(private mantenimientosServices: MantenimientosService, private cd: ChangeDetectorRef) {
-    this.dataSource = new MantenimientosTablaDataSource();
-  }
-  insertData(): void {
-    this.mantenimientosServices.getMantenimientos().subscribe(data => this.dataSource.setMantenimientosData(data));
-  }
-
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+  constructor(private mantenimientosServices: MantenimientosService, private cd: ChangeDetectorRef) {   
+  } 
+  
+  ngOnInit(): void {
     this.insertData();
-    this.cd.detectChanges();
+  }
+
+  insertData() {
+    this.mantenimientosServices.getMantenimientos().subscribe( data => {
+      this.dataSource = new MantenimientosTablaDataSource(data);
+      this.table.dataSource = this.dataSource;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    },
+    (error: HttpErrorResponse) => {alert(error.message);}
+    );
+  }
+
+  public deleteMantenimiento(id: number) {
+    const alerta = confirm(`¿Realmente desea Eliminar el registro ${id}?`);
+    
+    if (alerta) {
+      this.mantenimientosServices.deleteMantenimiento(id).subscribe(
+        (response: Mantenimientos) => {console.log(response)},
+        (err: HttpErrorResponse) => {alert(err.message)}
+      )
+    }  
   }
 }

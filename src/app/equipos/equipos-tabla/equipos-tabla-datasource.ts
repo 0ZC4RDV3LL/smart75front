@@ -3,7 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-import { Equipos } from 'src/app/interfaces/equipos';
+import { Equipos } from 'src/app/equipos/equipos';
 
 // TODO: replace this with real data from your application
 const EXAMPLE_DATA: Equipos[] = [
@@ -92,7 +92,7 @@ export class EquiposTablaDataSource extends DataSource<Equipos> {
     return data.sort((a, b) => {
       const isAsc = this.sort?.direction === 'asc';
       switch (this.sort?.active) {
-        case 'name': return compare(a.tipo, b.tipo, isAsc);
+        case 'tipo': return compare(a.tipo, b.tipo, isAsc);
         case 'id': return compare(+a.id, +b.id, isAsc);
         default: return 0;
       }

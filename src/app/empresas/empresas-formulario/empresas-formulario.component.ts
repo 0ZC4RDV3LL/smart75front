@@ -2,8 +2,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Empresas } from 'src/app/interfaces/empresas';
-import { EmpresasService } from 'src/app/services/empresas.service';
+import { Empresas } from 'src/app/empresas/empresas';
+import { EmpresasService } from 'src/app/empresas/service/empresas.service';
 
 @Component({
   selector: 'app-empresas-formulario',

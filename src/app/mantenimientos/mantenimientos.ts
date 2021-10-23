@@ -6,8 +6,8 @@ export interface Mantenimientos {
     fecha_entrada: string;
     fecha_salida: string;
     estado: boolean;
-    equipo: string;
-    empleado: string;
+    equipo: number;
+    empleado: number;
     observaciones: string;
   }
   

@@ -2,8 +2,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Empleados } from 'src/app/interfaces/empleados';
-import { EmpleadosService } from 'src/app/services/empleados.service';
+import { Empleados } from 'src/app/empleados/empleados';
+import { EmpleadosService } from 'src/app/empleados/service/empleados.service';
 
 @Component({
   selector: 'app-empleados-formulario',
