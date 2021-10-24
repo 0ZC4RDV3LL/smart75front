@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LabelUserService } from '../services/label-user.service';
 
 @Component({
   selector: 'app-login',
@@ -21,11 +22,14 @@ export class LoginComponent {
     {name: 'Jefe de Área', abbreviation: 'jefe'}
   ];
   
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private labelUser: LabelUserService) {
     const navigation = this.router.getCurrentNavigation();
   }
 
-  onSubmit(): void {
+  onSubmit(): void {  
+
+    this.labelUser.setlabelUser(this.addressForm.controls['username'].value);
+
     if (this.addressForm.value) {
       this.router.navigate(['home']);
     }  

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import { LabelUserService } from 'src/app/services/label-user.service';
 
 @Component({
   selector: 'app-navegacion',
@@ -16,6 +17,10 @@ export class NavegacionComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  username: string = '';
+
+  constructor(private breakpointObserver: BreakpointObserver, private labelUser: LabelUserService) {
+    this.username = this.labelUser.getlabelUser();
+  }  
 
 }
