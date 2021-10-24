@@ -19,7 +19,7 @@ export class EmpleadosTablaComponent implements OnInit {
   dataSource!: EmpleadosTablaDataSource;
   
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'nombre_completo', 'email', 'telefono', 'rol'];
+  displayedColumns = ['id', 'nombre_completo', 'email', 'telefono', 'rol', 'acciones'];
 
   constructor(private empleadosService: EmpleadosService, private cd: ChangeDetectorRef) {
     
@@ -40,4 +40,22 @@ export class EmpleadosTablaComponent implements OnInit {
     );
     
   }
+
+  deleteEmpleado(id: number) {
+    const alerta = confirm(`¿Realmente desea eliminar el regitro ${id}`);
+    if (alerta) {
+      this.empleadosService.deleteEmpleado(id).subscribe(
+        (response: Empleados) => {console.log(response)},
+        (err: HttpErrorResponse) => {alert(err.message)}
+      )
+    }
+  }
+
+  searchEmpleado(id: number) {
+    this.empleadosService.getEmpleado(id).subscribe(
+      (response: Empleados) => {console.log(response)},
+      (err: HttpErrorResponse) => {alert(err.message)}
+    )
+  }
+
 }

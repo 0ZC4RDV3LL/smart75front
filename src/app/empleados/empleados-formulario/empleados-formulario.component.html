@@ -3,6 +3,9 @@
     <mat-card-header>
       <mat-card-title>Formulario Empleados</mat-card-title>
     </mat-card-header>
+    <button mat-raised-button color="accent" routerLink="..">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
     <mat-card-content>
       <div class="row">
         <div class="col">
@@ -43,6 +46,7 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
+      <button mat-raised-button color="warn" type="reset">Reset</button>
       <button mat-raised-button color="primary" type="submit" [disabled]="addressForm.invalid">Enviar</button>
     </mat-card-actions>
   </mat-card>

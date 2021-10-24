@@ -3,8 +3,10 @@ import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
+import { Router } from '@angular/router';
 import { Empresas } from 'src/app/empresas/empresas';
 import { EmpresasService } from 'src/app/empresas/service/empresas.service';
+import { SendDataService } from '../service/send-data.service';
 import { EmpresasTablaDataSource } from './empresas-tabla-datasource';
 
 @Component({
@@ -19,9 +21,14 @@ export class EmpresasTablaComponent implements OnInit {
   dataSource!: EmpresasTablaDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'nit', 'razon_social', 'email', 'contacto', 'telefono', 'direccion', 'ciudad'];
+  displayedColumns = ['id', 'nit', 'razon_social', 'email', 'contacto', 'telefono', 'direccion', 'ciudad', 'acciones'];
 
-  constructor(private empresasService: EmpresasService, private cd: ChangeDetectorRef) {
+  constructor(
+    private empresasService: EmpresasService, 
+    private cd: ChangeDetectorRef, 
+    private sended: SendDataService,
+    private router: Router
+    ) {
     
   } 
   ngOnInit(): void {
@@ -39,5 +46,25 @@ export class EmpresasTablaComponent implements OnInit {
       },
       (err: HttpErrorResponse) => alert(err.message)
     );    
+  }
+
+  deleteEmpresa(id: number) {
+    
+    const alerta = confirm(`¿Realmente desea eliminar el registro ${id}?`);
+
+    if (alerta) {
+      this.empresasService.deleteEmpresa(id).subscribe(
+        (response: Empresas) => {console.log(response)},
+        (err: HttpErrorResponse) => {alert(err.message)}
+      )
+    }
+  }
+
+  searchEmpresa(id: number){
+    this.empresasService.getEmpresa(id).subscribe(
+      (response: Empresas) => {this.sended.setEmpresa(response)},
+      (err: HttpErrorResponse) => {alert(err.message)}
+    );
+    this.router.navigate(['./formulario']);
   }
 }

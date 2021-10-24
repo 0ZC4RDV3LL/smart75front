@@ -52,4 +52,11 @@ export class MantenimientosTablaComponent implements OnInit {
       )
     }  
   }
+
+  public searchMantenimiento(id: number) {
+    this.mantenimientosServices.getMantenimiento(id).subscribe(
+      (response: Mantenimientos) => {console.log(response)},
+      (err: HttpErrorResponse) => {alert(err.message)}
+    );
+  }
 }

@@ -56,7 +56,10 @@
 
         <ng-container matColumnDef="acciones">
           <th mat-header-cell *matHeaderCellDef>Acciones</th>
-          <button mat-mini-fab *matCellDef="let row" (click)="deleteMantenimiento(row.id)"><mat-icon>delete</mat-icon></button>
+          <td mat-cell *matCellDef="let row">
+            <button mat-mini-fab  (click)="deleteMantenimiento(row.id)"><mat-icon>delete</mat-icon></button>
+            <button mat-mini-fab  (click)="searchMantenimiento(row.id)"><mat-icon>mode_edit</mat-icon></button>
+          </td>
         </ng-container>
     
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

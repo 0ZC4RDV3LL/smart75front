@@ -19,7 +19,7 @@ export class EquiposTablaComponent implements OnInit {
   dataSource!: EquiposTablaDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'tipo', 'marca', 'numero_serial', 'modelo', 'cliente', 'observaciones'];
+  displayedColumns = ['id', 'tipo', 'marca', 'numero_serial', 'modelo', 'cliente', 'observaciones', 'acciones'];
 
   constructor(private equiposServices: EquiposService, private cd: ChangeDetectorRef) {    
   }

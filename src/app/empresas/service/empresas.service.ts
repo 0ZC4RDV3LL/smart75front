@@ -16,7 +16,7 @@ export class EmpresasService {
   }
 
   public getEmpresa(id: number): Observable<Empresas> {
-    return this.http.get<Empresas>(`${environment.apiURL}/clientes/${id}`)
+    return this.http.get<Empresas>(`${environment.apiURL}/clientes/${id}/`)
   }
 
   public addEmpresa(empresa: Empresas): Observable<Empresas> {
@@ -28,6 +28,6 @@ export class EmpresasService {
   }
 
   public deleteEmpresa(id: number): Observable<Empresas> {
-    return this.http.delete<Empresas>(`${environment.apiURL}/clientes/${id}`);
+    return this.http.delete<Empresas>(`${environment.apiURL}/clientes/${id}/`);
   }
 }

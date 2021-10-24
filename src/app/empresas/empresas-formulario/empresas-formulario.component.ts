@@ -1,16 +1,17 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Empresas } from 'src/app/empresas/empresas';
 import { EmpresasService } from 'src/app/empresas/service/empresas.service';
+import { SendDataService } from '../service/send-data.service';
 
 @Component({
   selector: 'app-empresas-formulario',
   templateUrl: './empresas-formulario.component.html',
   styleUrls: ['./empresas-formulario.component.css']
 })
-export class EmpresasFormularioComponent {
+export class EmpresasFormularioComponent implements OnInit {
   addressForm = this.fb.group({
     razon_social: [null, Validators.required],
     nit: [null, Validators.required],
@@ -85,8 +86,14 @@ export class EmpresasFormularioComponent {
     {name: 'Wyoming', abbreviation: 'WY'}
   ];
 
-  constructor(private fb: FormBuilder, private router: Router, private empresasService: EmpresasService) {
-    const navigation = this.router.getCurrentNavigation();
+  constructor(private fb: FormBuilder, private router: Router, private empresasService: EmpresasService, private sended: SendDataService) {
+    
+  }
+
+  ngOnInit() {
+    if (!this.sended) {
+      this.addressForm = this.sended;
+    }
   }
 
   onSubmit(): void {
@@ -98,4 +105,5 @@ export class EmpresasFormularioComponent {
     );
     this.router.navigate(['home/empresas']);    
   }
+  
 }
