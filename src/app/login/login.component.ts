@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LabelUserService } from '../services/label-user.service';
+import { LabelUserService } from 'src/app/services/label-user.service';
 
 @Component({
   selector: 'app-login',
