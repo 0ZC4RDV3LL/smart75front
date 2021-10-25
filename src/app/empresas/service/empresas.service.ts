@@ -16,18 +16,18 @@ export class EmpresasService {
   }
 
   public getEmpresa(id: number): Observable<Empresas> {
-    return this.http.get<Empresas>(`${environment.apiURL}/clientes/${id}/`)
+    return this.http.get<Empresas>(`${environment.apiURL}/clientes/${id}`)
   }
 
   public addEmpresa(empresa: Empresas): Observable<Empresas> {
     return this.http.post<Empresas>(`${environment.apiURL}/clientes/`, empresa);
   }
 
-  public update(empresa: Empresas): Observable<Empresas> {
-    return this.http.put<Empresas>(`${environment.apiURL}/clientes/`, empresa);
+  public update(empresa: Empresas, id: number): Observable<Empresas> {
+    return this.http.put<Empresas>(`${environment.apiURL}/clientes/${id}`, empresa);
   }
 
   public deleteEmpresa(id: number): Observable<Empresas> {
-    return this.http.delete<Empresas>(`${environment.apiURL}/clientes/${id}/`);
+    return this.http.delete<Empresas>(`${environment.apiURL}/clientes/${id}`);
   }
 }

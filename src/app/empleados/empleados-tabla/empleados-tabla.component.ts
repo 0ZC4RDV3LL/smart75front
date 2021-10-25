@@ -29,12 +29,12 @@ export class EmpleadosTablaComponent implements OnInit {
   }
   
   insertData(): void {
-
-    this.empleadosService.getEmpleados().subscribe((data: Empleados[]) => {      
+    this.empleadosService.getEmpleados().subscribe((data: Empleados[]) => {
       this.dataSource = new EmpleadosTablaDataSource(data);
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
       this.table.dataSource = this.dataSource;
+      this.cd.detectChanges();
     },
     (err: HttpErrorResponse) => {alert(err.message);}
     );
@@ -47,7 +47,9 @@ export class EmpleadosTablaComponent implements OnInit {
       this.empleadosService.deleteEmpleado(id).subscribe(
         (response: Empleados) => {console.log(response)},
         (err: HttpErrorResponse) => {alert(err.message)}
-      )
+      );
+      this.table.dataSource = [];
+      this.insertData();
     }
   }
 

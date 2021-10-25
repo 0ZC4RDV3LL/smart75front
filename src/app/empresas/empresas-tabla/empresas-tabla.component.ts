@@ -56,15 +56,30 @@ export class EmpresasTablaComponent implements OnInit {
       this.empresasService.deleteEmpresa(id).subscribe(
         (response: Empresas) => {console.log(response)},
         (err: HttpErrorResponse) => {alert(err.message)}
-      )
+      );
     }
+    window.location.reload();
   }
 
   searchEmpresa(id: number){
     this.empresasService.getEmpresa(id).subscribe(
-      (response: Empresas) => {this.sended.setEmpresa(response)},
+      (response: Empresas) => {
+        console.log(response);        
+        this.sended.setEmpresa(
+          response.id, 
+          response.razon_social, 
+          response.nit, 
+          response.direccion, 
+          response.ciudad, 
+          response.contacto, 
+          response.email, 
+          response.telefono
+          )
+      },
       (err: HttpErrorResponse) => {alert(err.message)}
     );
-    this.router.navigate(['./formulario']);
+    setTimeout(()=>{
+      this.router.navigate(['home/empresas/formulario'])
+    }, 200);
   }
 }

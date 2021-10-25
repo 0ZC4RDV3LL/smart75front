@@ -42,7 +42,8 @@ export class EmpleadosTablaDataSource extends DataSource<Empleados> {
 
   constructor(public data : Empleados[]) {
     super();
-  }  
+  }
+
 
   /**
    * Connect this data source to the table. The table will only update when
@@ -66,7 +67,9 @@ export class EmpleadosTablaDataSource extends DataSource<Empleados> {
    *  Called when the table is being destroyed. Use this function, to clean up
    * any open connections or free any held resources that were set up during connect.
    */
-  disconnect(): void {}
+  disconnect(): void {
+    this.data=[];
+  }
 
   /**
    * Paginate the data (client-side). If you're using server-side pagination,
@@ -93,7 +96,7 @@ export class EmpleadosTablaDataSource extends DataSource<Empleados> {
     return data.sort((a, b) => {
       const isAsc = this.sort?.direction === 'asc';
       switch (this.sort?.active) {
-        case 'name': return compare(a.nombre_completo, b.nombre_completo, isAsc);
+        case 'nombre_completo': return compare(a.nombre_completo, b.nombre_completo, isAsc);
         case 'id': return compare(+a.id, +b.id, isAsc);
         default: return 0;
       }

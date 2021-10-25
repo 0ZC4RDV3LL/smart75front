@@ -13,6 +13,7 @@ import { SendDataService } from '../service/send-data.service';
 })
 export class EmpresasFormularioComponent implements OnInit {
   addressForm = this.fb.group({
+    id: 0,
     razon_social: [null, Validators.required],
     nit: [null, Validators.required],
     direccion: [null, Validators.required],
@@ -25,65 +26,13 @@ export class EmpresasFormularioComponent implements OnInit {
   });
 
   states = [
-    {name: 'Alabama', abbreviation: 'AL'},
-    {name: 'Alaska', abbreviation: 'AK'},
-    {name: 'American Samoa', abbreviation: 'AS'},
-    {name: 'Arizona', abbreviation: 'AZ'},
-    {name: 'Arkansas', abbreviation: 'AR'},
-    {name: 'California', abbreviation: 'CA'},
-    {name: 'Colorado', abbreviation: 'CO'},
-    {name: 'Connecticut', abbreviation: 'CT'},
-    {name: 'Delaware', abbreviation: 'DE'},
-    {name: 'District Of Columbia', abbreviation: 'DC'},
-    {name: 'Federated States Of Micronesia', abbreviation: 'FM'},
-    {name: 'Florida', abbreviation: 'FL'},
-    {name: 'Georgia', abbreviation: 'GA'},
-    {name: 'Guam', abbreviation: 'GU'},
-    {name: 'Hawaii', abbreviation: 'HI'},
-    {name: 'Idaho', abbreviation: 'ID'},
-    {name: 'Illinois', abbreviation: 'IL'},
-    {name: 'Indiana', abbreviation: 'IN'},
-    {name: 'Iowa', abbreviation: 'IA'},
-    {name: 'Kansas', abbreviation: 'KS'},
-    {name: 'Kentucky', abbreviation: 'KY'},
-    {name: 'Louisiana', abbreviation: 'LA'},
-    {name: 'Maine', abbreviation: 'ME'},
-    {name: 'Marshall Islands', abbreviation: 'MH'},
-    {name: 'Maryland', abbreviation: 'MD'},
-    {name: 'Massachusetts', abbreviation: 'MA'},
-    {name: 'Michigan', abbreviation: 'MI'},
-    {name: 'Minnesota', abbreviation: 'MN'},
-    {name: 'Mississippi', abbreviation: 'MS'},
-    {name: 'Missouri', abbreviation: 'MO'},
-    {name: 'Montana', abbreviation: 'MT'},
-    {name: 'Nebraska', abbreviation: 'NE'},
-    {name: 'Nevada', abbreviation: 'NV'},
-    {name: 'New Hampshire', abbreviation: 'NH'},
-    {name: 'New Jersey', abbreviation: 'NJ'},
-    {name: 'New Mexico', abbreviation: 'NM'},
-    {name: 'New York', abbreviation: 'NY'},
-    {name: 'North Carolina', abbreviation: 'NC'},
-    {name: 'North Dakota', abbreviation: 'ND'},
-    {name: 'Northern Mariana Islands', abbreviation: 'MP'},
-    {name: 'Ohio', abbreviation: 'OH'},
-    {name: 'Oklahoma', abbreviation: 'OK'},
-    {name: 'Oregon', abbreviation: 'OR'},
-    {name: 'Palau', abbreviation: 'PW'},
-    {name: 'Pennsylvania', abbreviation: 'PA'},
-    {name: 'Puerto Rico', abbreviation: 'PR'},
-    {name: 'Rhode Island', abbreviation: 'RI'},
-    {name: 'South Carolina', abbreviation: 'SC'},
-    {name: 'South Dakota', abbreviation: 'SD'},
-    {name: 'Tennessee', abbreviation: 'TN'},
-    {name: 'Texas', abbreviation: 'TX'},
-    {name: 'Utah', abbreviation: 'UT'},
-    {name: 'Vermont', abbreviation: 'VT'},
-    {name: 'Virgin Islands', abbreviation: 'VI'},
-    {name: 'Virginia', abbreviation: 'VA'},
-    {name: 'Washington', abbreviation: 'WA'},
-    {name: 'West Virginia', abbreviation: 'WV'},
-    {name: 'Wisconsin', abbreviation: 'WI'},
-    {name: 'Wyoming', abbreviation: 'WY'}
+    {name: 'Bogotá', abbreviation: 'BO'},
+    {name: 'Medellín', abbreviation: 'ME'},
+    {name: 'Cali', abbreviation: 'CA'},
+    {name: 'Bucaramanga', abbreviation: 'BU'},
+    {name: 'Pasto', abbreviation: 'PA'},
+    {name: 'Villavicencio', abbreviation: 'VI'},
+    {name: 'Zipaquirá', abbreviation: 'ZI'},    
   ];
 
   constructor(private fb: FormBuilder, private router: Router, private empresasService: EmpresasService, private sended: SendDataService) {
@@ -91,19 +40,38 @@ export class EmpresasFormularioComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.sended) {
-      this.addressForm = this.sended;
+    const empresa = this.sended.getEmpresa();   
+    
+    if (empresa.id) {
+      this.addressForm.setValue({
+        id: empresa.id,
+        razon_social: empresa.razon_social, 
+        nit: empresa.nit, 
+        direccion: empresa.direccion,
+        ciudad: empresa.ciudad,
+        contacto: empresa.contacto,
+        email: empresa.email,
+        telefono: empresa.telefono,
+      });      
     }
   }
 
   onSubmit(): void {
-    console.log(this.addressForm.value);
-    
-    this.empresasService.addEmpresa(this.addressForm.value).subscribe(
-      (response: Empresas) => {console.log(response)},
-      (err: HttpErrorResponse) => {alert(err.message)}
-    );
-    this.router.navigate(['home/empresas']);    
+
+    if (this.addressForm.controls['id'].value == 0) {
+      this.empresasService.addEmpresa(this.addressForm.value).subscribe(
+        (response: Empresas) => {console.log(response)},
+        (err: HttpErrorResponse) => {alert(err.message)}
+      );      
+    } else {
+      this.empresasService.update(this.addressForm.value, this.addressForm.controls['id'].value).subscribe(
+        (response: Empresas) => {console.log(response)},
+        (err: HttpErrorResponse) => {alert(err.message)}
+      )
+    }
+    setTimeout(() => {
+      this.router.navigate(['home/empresas']);
+    }, 300)
   }
   
 }

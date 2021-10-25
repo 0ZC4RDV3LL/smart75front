@@ -23,8 +23,8 @@ export class MantenimientosService {
     return this.http.post<Mantenimientos>(`${environment.apiURL}/mantenimientos/`, mantenimiento);
   }
 
-  public updateMantenimiento(mantenimiento: Mantenimientos): Observable<Mantenimientos> {
-    return this.http.put<Mantenimientos>(`${environment.apiURL}/mantenimientos/`, mantenimiento);
+  public updateMantenimiento(mantenimiento: Mantenimientos, id: number): Observable<Mantenimientos> {
+    return this.http.put<Mantenimientos>(`${environment.apiURL}/mantenimientos/${id}`, mantenimiento);
   }
 
   public deleteMantenimiento(id: number): Observable<Mantenimientos> {

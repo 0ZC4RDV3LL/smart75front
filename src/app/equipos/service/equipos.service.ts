@@ -23,8 +23,8 @@ export class EquiposService {
     return this.http.post<Equipos>(`${environment.apiURL}/equipos/`, equipo);
   }
 
-  public updateEquipo(equipo: Equipos): Observable<Equipos> {
-    return this.http.put<Equipos>(`${environment.apiURL}/equipos/`, equipo);
+  public updateEquipo(equipo: Equipos, id: number): Observable<Equipos> {
+    return this.http.put<Equipos>(`${environment.apiURL}/equipos/${id}`, equipo);
   }
 
   public deleteEquipo(id: number): Observable<Equipos> {
