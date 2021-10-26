@@ -30,7 +30,8 @@ export class EmpleadosService {
     return this.http.post<Empleados>(`${environment.apiURL}/empleados/`, empleado, this.httpOptions);
   }
 
-  public updateEmpleado(empleado: Empleados, id: number): Observable<Empleados> {
+  public updateEmpleado(empleado: Empleados): Observable<Empleados> {
+    const id = empleado.id;
     return this.http.put<Empleados>(`${environment.apiURL}/empleados/${id}`, empleado);
   }
 

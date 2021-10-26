@@ -58,7 +58,9 @@ export class EmpresasTablaComponent implements OnInit {
         (err: HttpErrorResponse) => {alert(err.message)}
       );
     }
-    window.location.reload();
+    this.insertData();
+    alert('El registro fue eliminado exitosamente.')
+    // window.location.reload();
   }
 
   searchEmpresa(id: number){
@@ -80,6 +82,6 @@ export class EmpresasTablaComponent implements OnInit {
     );
     setTimeout(()=>{
       this.router.navigate(['home/empresas/formulario'])
-    }, 200);
+    }, 300);
   }
 }

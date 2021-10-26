@@ -6,6 +6,8 @@ import { EmpleadosTablaDataSource } from './empleados-tabla-datasource';
 import { Empleados } from '../empleados';
 import { EmpleadosService } from 'src/app/empleados/service/empleados.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { SendEmpleadoService } from '../service/send-empleado.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-empleados-tabla',
@@ -21,7 +23,7 @@ export class EmpleadosTablaComponent implements OnInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'nombre_completo', 'email', 'telefono', 'rol', 'acciones'];
 
-  constructor(private empleadosService: EmpleadosService, private cd: ChangeDetectorRef) {
+  constructor(private empleadosService: EmpleadosService, private cd: ChangeDetectorRef, private se: SendEmpleadoService, private router: Router) {
     
   }
   ngOnInit(): void {
@@ -55,9 +57,17 @@ export class EmpleadosTablaComponent implements OnInit {
 
   searchEmpleado(id: number) {
     this.empleadosService.getEmpleado(id).subscribe(
-      (response: Empleados) => {console.log(response)},
+      (response: Empleados) => {
+        this.se.setEmpleado(response);
+        console.log(response)
+      },
       (err: HttpErrorResponse) => {alert(err.message)}
-    )
+    );
+      
+    setTimeout(() => {
+      this.router.navigate(['home/empleados/formulario']);
+    }, 300);
+  
   }
 
 }

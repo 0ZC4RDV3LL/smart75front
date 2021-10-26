@@ -6,6 +6,8 @@ import { MatTable } from '@angular/material/table';
 import { Mantenimientos } from 'src/app/mantenimientos/mantenimientos';
 import { MantenimientosTablaDataSource } from './mantenimientos-tabla-datasource';
 import { MantenimientosService } from 'src/app/mantenimientos/service/mantenimientos.service';
+import { Router } from '@angular/router';
+import { SendMantenimientoService } from '../service/send-mantenimiento.service';
 
 
 @Component({
@@ -24,7 +26,7 @@ export class MantenimientosTablaComponent implements OnInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'costo', 'fecha_entrada', 'fecha_salida', 'estado', 'equipo', 'empleado', 'observaciones', 'acciones'];
 
-  constructor(private mantenimientosServices: MantenimientosService, private cd: ChangeDetectorRef) {   
+  constructor(private mantenimientosServices: MantenimientosService, private cd: ChangeDetectorRef, private router: Router, private sm: SendMantenimientoService) {   
   } 
   
   ngOnInit(): void {
@@ -50,13 +52,18 @@ export class MantenimientosTablaComponent implements OnInit {
         (response: Mantenimientos) => {console.log(response)},
         (err: HttpErrorResponse) => {alert(err.message)}
       )
+      window.location.reload();
     }  
   }
 
   public searchMantenimiento(id: number) {
     this.mantenimientosServices.getMantenimiento(id).subscribe(
-      (response: Mantenimientos) => {console.log(response)},
+      (response: Mantenimientos) => {this.sm.setMantenimiento(response)},
       (err: HttpErrorResponse) => {alert(err.message)}
     );
+
+    setTimeout(() => {
+      this.router.navigate(['home/mantenimientos/formulario']);
+    }, 300);
   }
 }
