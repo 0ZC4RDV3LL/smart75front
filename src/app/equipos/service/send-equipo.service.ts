@@ -17,4 +17,14 @@ export class SendEquipoService {
   public getEquipo(): Equipos {
     return this.equipo;
   }
+
+  public clearData(): void {
+    this.equipo.id = 0;
+    this.equipo.cliente = 0;
+    this.equipo.marca = '';
+    this.equipo.modelo = '';
+    this.equipo.numero_serial = '';
+    this.equipo.observaciones = '';
+    this.equipo.tipo = '';
+  }
 }

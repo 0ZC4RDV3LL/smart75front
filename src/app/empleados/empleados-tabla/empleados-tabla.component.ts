@@ -50,8 +50,7 @@ export class EmpleadosTablaComponent implements OnInit {
         (response: Empleados) => {console.log(response)},
         (err: HttpErrorResponse) => {alert(err.message)}
       );
-      this.table.dataSource = [];
-      this.insertData();
+      window.location.reload();
     }
   }
 

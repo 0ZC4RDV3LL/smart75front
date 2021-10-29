@@ -30,8 +30,17 @@ export class LoginComponent {
 
     this.labelUser.setlabelUser(this.addressForm.controls['username'].value);
 
-    if (this.addressForm.value) {
-      this.router.navigate(['home']);
-    }  
+    if(this.addressForm.controls['username'].value == 'usuario1' && this.addressForm.controls['password'].value == 'Smart75') {
+      this.router.navigate(['home/empleados']);
+      
+    } else if(this.addressForm.controls['username'].value == 'usuario2' && this.addressForm.controls['password'].value == 'Smart75') {
+      this.router.navigate(['home/empresas']);
+      
+    } else {
+      alert('Usuario o contraseña son incorrectos');
+      this.addressForm.controls['username'].setValue('');
+      this.addressForm.controls['password'].setValue('');
+      this.addressForm.controls['role'].setValue('');
+    }   
   }
 }

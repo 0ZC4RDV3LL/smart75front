@@ -59,8 +59,7 @@ export class EmpresasTablaComponent implements OnInit {
       );
     }
     this.insertData();
-    alert('El registro fue eliminado exitosamente.')
-    // window.location.reload();
+    window.location.reload();
   }
 
   searchEmpresa(id: number){

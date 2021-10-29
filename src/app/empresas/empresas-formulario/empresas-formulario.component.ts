@@ -40,6 +40,7 @@ export class EmpresasFormularioComponent implements OnInit {
   }
 
   ngOnInit() {
+
     const empresa = this.sended.getEmpresa();   
     
     if (empresa.id) {
@@ -54,6 +55,7 @@ export class EmpresasFormularioComponent implements OnInit {
         telefono: empresa.telefono,
       });      
     }
+    this.sended.clearData();
   }
 
   onSubmit(): void {

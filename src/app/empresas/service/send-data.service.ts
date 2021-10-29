@@ -44,4 +44,15 @@ export class SendDataService {
      }
   }
 
+  public clearData(): void {
+    this.id = 0;
+    this.razon_social = '';
+    this.nit = 0;
+    this.direccion = '';
+    this.ciudad = '';
+    this.contacto = '';
+    this.email = '';
+    this.telefono = 0;
+  }
+
 }

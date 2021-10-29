@@ -2,9 +2,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Equipos } from 'src/app/equipos/equipos';
 import { Mantenimientos } from 'src/app/mantenimientos/mantenimientos';
 import { MantenimientosService } from 'src/app/mantenimientos/service/mantenimientos.service';
 import { SendMantenimientoService } from '../service/send-mantenimiento.service';
+import { EquiposService } from 'src/app/equipos/service/equipos.service';
+import { EmpleadosService } from 'src/app/empleados/service/empleados.service';
+import { Empleados } from 'src/app/empleados/empleados';
 
 @Component({
   selector: 'app-mantenimientos-formulario',
@@ -23,9 +27,17 @@ export class MantenimientosFormularioComponent implements OnInit{
     observaciones: [null, Validators.required]
   });  
 
+  equipos: Equipos[] = [];
+  empleados: Empleados[] = [];
   hoy = new Date();
 
-  constructor(private fb: FormBuilder, private router: Router, private mantenimientosService: MantenimientosService, private sm: SendMantenimientoService) {
+  constructor(
+    private fb: FormBuilder, 
+    private router: Router, 
+    private mantenimientosService: MantenimientosService, 
+    private sm: SendMantenimientoService, 
+    private equiposService: EquiposService,
+    private empleadoService: EmpleadosService ) {
    
   }
   ngOnInit(): void {
@@ -41,6 +53,21 @@ export class MantenimientosFormularioComponent implements OnInit{
       this.addressForm.controls['observaciones'].setValue(mantenimiento.observaciones);
       
     }
+
+    this.selectEquipos();
+    this.selectTecnico();
+  }
+
+  selectEquipos(){
+    this.equiposService.getEquipos().subscribe(
+      (equipos: Equipos[]) => {this.equipos = equipos}
+    )
+  }
+
+  selectTecnico(){
+    this.empleadoService.getEmpleados().subscribe(
+      (empleados: Empleados[]) => {this.empleados = empleados}
+    )
   }
 
   onSubmit(): void {

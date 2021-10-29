@@ -17,5 +17,13 @@ export class SendEmpleadoService {
   public getEmpleado(): Empleados {
     return this.empleado;
   }
+
+  public clearData(): void {
+    this.empleado.id = 0;
+    this.empleado.email = '';
+    this.empleado.nombre_completo = '';
+    this.empleado.telefono = '';
+    this.empleado.rol = '';
+  }
   
 }

@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { Equipos } from 'src/app/equipos/equipos';
 import { EquiposService } from 'src/app/equipos/service/equipos.service';
 import { SendEquipoService } from '../service/send-equipo.service';
+import { EmpresasService } from 'src/app/empresas/service/empresas.service';
+import { Empresas } from 'src/app/empresas/empresas';
 
 @Component({
   selector: 'app-equipos-formulario',
@@ -21,11 +23,19 @@ export class EquiposFormularioComponent implements OnInit{
     cliente: [null, Validators.required],
     observaciones: [null, Validators.required]
   });
+
+  empresas: Empresas[] = [];
   
-  constructor(private fb: FormBuilder, private router: Router, private equipoService: EquiposService, private se: SendEquipoService) {
+  constructor(
+    private fb: FormBuilder, 
+    private router: Router, 
+    private equipoService: EquiposService, 
+    private se: SendEquipoService,
+    private empresasService: EmpresasService) {
     const navigation = this.router.getCurrentNavigation();
   }
   ngOnInit(): void {
+    this.selectCliente();
     const equipo: Equipos = this.se.getEquipo();
 
     if (equipo !== undefined) {
@@ -36,8 +46,15 @@ export class EquiposFormularioComponent implements OnInit{
       this.addressForm.controls['modelo'].setValue(equipo.modelo);
       this.addressForm.controls['cliente'].setValue(equipo.cliente);
       this.addressForm.controls['observaciones'].setValue(equipo.observaciones);
-
     }
+
+    this.se.clearData();
+  }
+
+  selectCliente(): void {
+    this.empresasService.getEmpresas().subscribe(
+      (empresas: Empresas[]) => {this.empresas = empresas;}
+    )
   }
 
   onSubmit(): void {

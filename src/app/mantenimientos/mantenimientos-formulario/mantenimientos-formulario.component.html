@@ -41,7 +41,15 @@
       <div class="row">        
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Equipo" formControlName="equipo" type="number">
+            
+            <mat-select placeholder="Equipo" formControlName="equipo">
+              <ng-container  *ngFor="let equipo of equipos">
+                <mat-option [value]="equipo.id">
+                  {{ equipo.numero_serial }}
+                </mat-option>
+              </ng-container>
+            </mat-select>
+
             <mat-error *ngIf="addressForm.controls['equipo'].hasError('required')">
               El equipo es <strong>requerido</strong>
             </mat-error>
@@ -52,7 +60,13 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Técnico" formControlName="empleado" type="number">
+            <mat-select placeholder="Empleado" formControlName="empleado">
+              <ng-container  *ngFor="let empleado of empleados">
+                <mat-option [value]="empleado.id">
+                  {{ empleado.nombre_completo }}
+                </mat-option>
+              </ng-container>
+            </mat-select>
             <mat-error *ngIf="addressForm.controls['empleado'].hasError('required')">
               El técnico es <strong>requerido</strong>
             </mat-error>

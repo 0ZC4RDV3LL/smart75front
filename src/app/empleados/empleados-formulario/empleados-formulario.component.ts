@@ -30,14 +30,14 @@ export class EmpleadosFormularioComponent implements OnInit{
    const empleado = this.se.getEmpleado();
    console.log(empleado);
 
-   if (empleado !== undefined) {
+   if (empleado !== undefined || empleado == 0) {
      this.addressForm.controls['id'].setValue(empleado.id);
      this.addressForm.controls['nombre_completo'].setValue(empleado.nombre_completo);
      this.addressForm.controls['email'].setValue(empleado.email);
      this.addressForm.controls['telefono'].setValue(empleado.telefono);
      this.addressForm.controls['rol'].setValue(empleado.rol);     
    }
-  
+    this.se.clearData();
   }
 
   onSubmit(): void {
