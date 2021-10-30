@@ -41,6 +41,8 @@ export class MantenimientosFormularioComponent implements OnInit{
    
   }
   ngOnInit(): void {
+    this.selectEquipos();
+    this.selectTecnico();
     const mantenimiento: Mantenimientos = this.sm.getMantenimiento();
     if (mantenimiento !== undefined) {
       this.addressForm.controls['id'].setValue(mantenimiento.id);
@@ -53,9 +55,7 @@ export class MantenimientosFormularioComponent implements OnInit{
       this.addressForm.controls['observaciones'].setValue(mantenimiento.observaciones);
       
     }
-
-    this.selectEquipos();
-    this.selectTecnico();
+    this.sm.clearData();
   }
 
   selectEquipos(){

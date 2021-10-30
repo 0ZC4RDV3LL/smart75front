@@ -26,7 +26,11 @@ export class MantenimientosTablaComponent implements OnInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'costo', 'fecha_entrada', 'fecha_salida', 'estado', 'equipo', 'empleado', 'observaciones', 'acciones'];
 
-  constructor(private mantenimientosServices: MantenimientosService, private cd: ChangeDetectorRef, private router: Router, private sm: SendMantenimientoService) {   
+  constructor(
+    private mantenimientosServices: MantenimientosService, 
+    private cd: ChangeDetectorRef, 
+    private router: Router, 
+    private sm: SendMantenimientoService) {   
   } 
   
   ngOnInit(): void {
